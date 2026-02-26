@@ -36,6 +36,485 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .featured-showcase-{{ section.id }} {
+    --fc-side: clamp(16rem, 22vw, 22rem);
+    --fc-main: clamp(23rem, 34vw, 34rem);
+    --fc-gap: clamp(1rem, 2vw, 2rem);
+    --fc-radius: 2.2rem;
+    --fc-side-h: clamp(22rem, 30vw, 31rem);
+    --fc-main-h: clamp(31rem, 42vw, 45rem);
+    --fc-edge-fade: clamp(2.4rem, 6vw, 6.5rem);
+    --fc-glass-bg: rgba(var(--color-background), 0.18);
+    --fc-glass-line: rgba(255, 255, 255, 0.1);
+    --fc-glass-shadow: 0 2.2rem 4.8rem rgba(var(--color-shadow), 0.12);
+    --fc-accent-cool: 168, 196, 255;
+    --fc-accent-soft: 214, 224, 248;
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__shell {
+    position: relative;
+    max-width: min(118rem, calc(100vw - 2rem));
+    margin: 0 auto;
+    border-radius: 2.8rem;
+    padding: clamp(1.6rem, 2.6vw, 2.4rem);
+    border: 0.1rem solid rgba(255, 255, 255, 0.15);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01)),
+      rgba(var(--color-background), 0.14);
+    box-shadow:
+      inset 0 0 0 0.1rem rgba(255, 255, 255, 0.04),
+      0 1.6rem 4rem rgba(var(--color-shadow), 0.08);
+    backdrop-filter: blur(18px) saturate(120%);
+    -webkit-backdrop-filter: blur(18px) saturate(120%);
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__shell::before,
+  .featured-showcase-{{ section.id }} .featured-showcase__shell::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__shell::before {
+    width: 25rem;
+    height: 25rem;
+    top: -7rem;
+    left: -6rem;
+    background: radial-gradient(circle, rgba(var(--fc-accent-soft), 0.12) 0%, rgba(var(--fc-accent-soft), 0.04) 36%, transparent 72%);
+    filter: blur(12px);
+    opacity: 0.7;
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__shell::after {
+    width: 32rem;
+    height: 32rem;
+    right: -10rem;
+    bottom: -11rem;
+    background: radial-gradient(circle, rgba(var(--fc-accent-cool), 0.07) 0%, rgba(var(--fc-accent-cool), 0.025) 35%, transparent 74%);
+    filter: blur(14px);
+    opacity: 0.55;
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__shell > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__head {
+    display: grid;
+    grid-template-columns: auto;
+    align-items: end;
+    justify-content: end;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__head-title {
+    margin: 0;
+    font-size: clamp(2.2rem, 3vw, 3.8rem);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__head-count {
+    color: rgba(var(--color-foreground), 0.86);
+    font-size: clamp(1.3rem, 1.7vw, 1.8rem);
+    letter-spacing: 0.08em;
+    line-height: 1;
+    padding: 0.65rem 0.9rem;
+    border-radius: 999px;
+    border: 0.1rem solid rgba(255, 255, 255, 0.14);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04)),
+      rgba(var(--color-background), 0.18);
+    box-shadow:
+      inset 0 0 0 0.1rem rgba(255, 255, 255, 0.02),
+      0 0.8rem 2rem rgba(var(--color-shadow), 0.05);
+    backdrop-filter: blur(10px) saturate(125%);
+    -webkit-backdrop-filter: blur(10px) saturate(125%);
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__rule {
+    height: 0.1rem;
+    background:
+      linear-gradient(90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.18) 15%,
+        rgba(var(--color-foreground), 0.12) 50%,
+        rgba(255, 255, 255, 0.18) 85%,
+        rgba(255, 255, 255, 0) 100%);
+    margin-bottom: 1.8rem;
+    opacity: 0.9;
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__viewport {
+    position: relative;
+    overflow: hidden;
+    padding: 1rem 2.8rem;
+    isolation: isolate;
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__track {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: var(--fc-gap);
+    transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__slide {
+    flex: 0 0 var(--fc-side);
+    width: var(--fc-side);
+    opacity: 0.8;
+    transform: translateY(0.8rem) scale(0.985);
+    transition: opacity 260ms ease, transform 320ms ease, filter 260ms ease;
+    filter: saturate(0.9) brightness(0.95);
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__slide.is-active {
+    flex-basis: var(--fc-main);
+    width: var(--fc-main);
+    opacity: 1;
+    z-index: 2;
+    transform: translateY(0) scale(1);
+    filter: saturate(1.06) brightness(1);
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__slide.is-far {
+    opacity: 0.42;
+    transform: translateY(1.1rem) scale(0.97);
+    filter: saturate(0.82) brightness(0.88);
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__card {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: var(--fc-side-h);
+    border-radius: var(--fc-radius);
+    overflow: hidden;
+    text-decoration: none;
+    color: #fff;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.015)),
+      radial-gradient(circle at 14% 12%, rgba(var(--fc-accent-cool), 0.11), transparent 38%),
+      radial-gradient(circle at 88% 84%, rgba(var(--fc-accent-soft), 0.08), transparent 42%),
+      rgba(var(--color-background), 0.22);
+    border: 0.1rem solid var(--fc-glass-line);
+    box-shadow:
+      0 1.4rem 3rem rgba(var(--color-shadow), 0.11),
+      inset 0 0 0 0.1rem rgba(255, 255, 255, 0.02),
+      inset 0 1.2rem 2rem rgba(255, 255, 255, 0.01);
+    transform-origin: center;
+    transition: box-shadow 280ms ease, transform 280ms ease, border-color 280ms ease;
+    backdrop-filter: blur(16px) saturate(125%);
+    -webkit-backdrop-filter: blur(16px) saturate(125%);
+    isolation: isolate;
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__slide.is-active .featured-showcase__card {
+    height: var(--fc-main-h);
+    border-color: rgba(255, 255, 255, 0.14);
+    box-shadow:
+      var(--fc-glass-shadow),
+      0 0.6rem 1.4rem rgba(0, 0, 0, 0.08),
+      inset 0 0 0 0.1rem rgba(255, 255, 255, 0.025),
+      inset 0 1.6rem 2.4rem rgba(255, 255, 255, 0.012);
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 18% 10%, rgba(var(--fc-accent-soft), 0.09), transparent 42%),
+      radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.04), transparent 48%),
+      linear-gradient(130deg, rgba(255, 255, 255, 0.05), transparent 40%);
+    opacity: 0.65;
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__card::after {
+    content: '';
+    position: absolute;
+    inset: -18% -14%;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      conic-gradient(from 190deg at 50% 50%, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0));
+    filter: blur(22px);
+    opacity: 0.24;
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1), opacity 320ms ease;
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__slide.is-active .featured-showcase__card:hover,
+  .featured-showcase-{{ section.id }} .featured-showcase__slide.is-active .featured-showcase__card:focus-visible {
+    transform: translateY(-0.28rem);
+    box-shadow:
+      0 3rem 6rem rgba(var(--color-shadow), 0.18),
+      0 0.8rem 1.8rem rgba(0, 0, 0, 0.1),
+      inset 0 0 0 0.1rem rgba(255, 255, 255, 0.035);
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__slide:not(.is-far) .featured-showcase__card:hover::after,
+  .featured-showcase-{{ section.id }} .featured-showcase__slide:not(.is-far) .featured-showcase__card:focus-visible::after {
+    opacity: 0.4;
+    transform: translate3d(1rem, -0.7rem, 0) rotate(7deg);
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__card:focus-visible {
+    outline: 0.2rem solid rgba(255, 255, 255, 0.9);
+    outline-offset: -0.4rem;
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__media {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 50% 38%, rgba(var(--fc-accent-cool), 0.08), transparent 62%),
+      rgba(var(--color-background), 0.2);
+    isolation: isolate;
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transform: scale(1.02);
+    transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1), filter 320ms ease;
+    filter: saturate(1.03) contrast(1.06) brightness(1.01);
+    mix-blend-mode: multiply;
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__placeholder {
+    width: 100%;
+    height: 100%;
+    background:
+      radial-gradient(circle at 28% 18%, rgba(255, 255, 255, 0.35), transparent 48%),
+      linear-gradient(135deg, rgba(137, 196, 189, 0.6), rgba(235, 171, 104, 0.65));
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__shade {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(10, 12, 16, 0.03) 0%, rgba(10, 12, 16, 0.14) 44%, rgba(10, 12, 16, 0.32) 100%),
+      linear-gradient(0deg, rgba(0, 0, 0, 0.46) 0%, rgba(0, 0, 0, 0.18) 28%, rgba(0, 0, 0, 0) 62%),
+      radial-gradient(circle at 14% 10%, rgba(var(--fc-accent-cool), 0.06), transparent 40%);
+    z-index: 1;
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__slide.is-active .featured-showcase__media img {
+    transform: scale(1);
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__slide:not(.is-far) .featured-showcase__card:hover .featured-showcase__media img,
+  .featured-showcase-{{ section.id }} .featured-showcase__slide:not(.is-far) .featured-showcase__card:focus-visible .featured-showcase__media img {
+    transform: scale(1.04);
+    filter: saturate(1.07) contrast(1.08) brightness(1.03);
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__title-text {
+    position: absolute;
+    left: 1.1rem;
+    right: 1.1rem;
+    bottom: 1.1rem;
+    z-index: 2;
+    margin: 0;
+    padding: 0.9rem 1rem 0.95rem;
+    border-radius: 1.2rem;
+    color: rgba(255, 255, 255, 0.97);
+    font-size: clamp(1.9rem, 2.9vw, 4.6rem);
+    font-weight: 600;
+    line-height: 0.96;
+    letter-spacing: -0.025em;
+    text-transform: none;
+    text-shadow: 0 0.4rem 1.4rem rgba(0, 0, 0, 0.22);
+    overflow-wrap: anywhere;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.015)),
+      linear-gradient(180deg, rgba(14, 16, 20, 0.14), rgba(14, 16, 20, 0.28));
+    border: 0.1rem solid rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 0 0 0.1rem rgba(255, 255, 255, 0.01);
+    backdrop-filter: blur(14px) saturate(130%);
+    -webkit-backdrop-filter: blur(14px) saturate(130%);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__slide:not(.is-active) .featured-showcase__title-text {
+    left: 0.9rem;
+    right: 0.9rem;
+    bottom: 0.9rem;
+    padding: 0.7rem 0.8rem 0.75rem;
+    border-radius: 0.95rem;
+    font-size: clamp(1.45rem, 1.6vw, 2.2rem);
+    line-height: 1.02;
+    -webkit-line-clamp: 2;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.01)),
+      linear-gradient(180deg, rgba(14, 16, 20, 0.08), rgba(14, 16, 20, 0.22));
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__price {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 2;
+    border-radius: 999px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.035)),
+      rgba(var(--color-background), 0.22);
+    border: 0.1rem solid rgba(255, 255, 255, 0.12);
+    padding: 0.6rem 0.9rem;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.95);
+    box-shadow:
+      inset 0 0 0 0.1rem rgba(255, 255, 255, 0.01),
+      0 0.8rem 1.8rem rgba(var(--color-shadow), 0.08);
+    backdrop-filter: blur(14px) saturate(130%);
+    -webkit-backdrop-filter: blur(14px) saturate(130%);
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__slide.is-active .featured-showcase__price {
+    top: 1.2rem;
+    left: 1.2rem;
+    padding: 0.7rem 1rem;
+    font-size: 1.2rem;
+    background:
+      linear-gradient(180deg, rgba(var(--fc-accent-soft), 0.14), rgba(255, 255, 255, 0.04)),
+      rgba(var(--color-background), 0.24);
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4.4rem;
+    height: 4.4rem;
+    border: 0.1rem solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015)),
+      rgba(var(--color-background), 0.34);
+    color: rgb(var(--color-foreground));
+    box-shadow:
+      0 0.6rem 1.4rem rgba(var(--color-shadow), 0.07),
+      inset 0 0 0 0.1rem rgba(255, 255, 255, 0.01);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    cursor: pointer;
+    -webkit-backdrop-filter: blur(14px) saturate(130%);
+    backdrop-filter: blur(14px) saturate(130%);
+    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease, background-color 220ms ease;
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__nav:hover,
+  .featured-showcase-{{ section.id }} .featured-showcase__nav:focus-visible {
+    border-color: rgba(255, 255, 255, 0.16);
+    box-shadow:
+      0 0.8rem 1.8rem rgba(var(--color-shadow), 0.1),
+      inset 0 0 0 0.1rem rgba(var(--fc-accent-soft), 0.02);
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__nav--prev { left: 0.3rem; }
+  .featured-showcase-{{ section.id }} .featured-showcase__nav--next { right: 0.3rem; }
+  .featured-showcase-{{ section.id }} .featured-showcase__nav--prev .icon-caret { transform: rotate(90deg); }
+  .featured-showcase-{{ section.id }} .featured-showcase__nav--next .icon-caret { transform: rotate(-90deg); }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.2rem;
+    width: fit-content;
+    margin-inline: auto;
+    padding: 0.5rem 0.65rem;
+    border-radius: 999px;
+    border: 0.1rem solid rgba(255, 255, 255, 0.08);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015)),
+      rgba(var(--color-background), 0.2);
+    box-shadow: 0 0.8rem 2rem rgba(var(--color-shadow), 0.05);
+    backdrop-filter: blur(10px) saturate(120%);
+    -webkit-backdrop-filter: blur(10px) saturate(120%);
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__dot {
+    width: 1.2rem;
+    height: 0.45rem;
+    border-radius: 999px;
+    border: 0.1rem solid rgba(255, 255, 255, 0.05);
+    background: rgba(var(--fc-accent-soft), 0.12);
+    padding: 0;
+    cursor: pointer;
+    transition: width 220ms ease, background-color 220ms ease, border-color 220ms ease, transform 220ms ease;
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__dot.is-active {
+    width: 2.6rem;
+    background:
+      linear-gradient(90deg, rgba(var(--fc-accent-soft), 0.24), rgba(255, 255, 255, 0.08)),
+      rgba(var(--fc-accent-cool), 0.34);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .featured-showcase-{{ section.id }} .featured-showcase__dot:hover {
+    transform: translateY(-0.1rem);
+  }
+
+  @media screen and (max-width: 749px) {
+    .featured-showcase-{{ section.id }} {
+      --fc-side: 12.8rem;
+      --fc-main: min(21.5rem, calc(100vw - 9.2rem));
+      --fc-gap: 0.8rem;
+      --fc-side-h: 18rem;
+      --fc-main-h: 27.5rem;
+      --fc-radius: 1.8rem;
+      --fc-edge-fade: 2.4rem;
+    }
+
+    .featured-showcase-{{ section.id }} .featured-showcase__shell {
+      max-width: calc(100vw - 1rem);
+      border-radius: 2rem;
+      padding: 1.2rem;
+    }
+
+    .featured-showcase-{{ section.id }} .featured-showcase__rule {
+      margin-bottom: 1.2rem;
+    }
+
+    .featured-showcase-{{ section.id }} .featured-showcase__nav {
+      width: 3.8rem;
+      height: 3.8rem;
+    }
+
+    .featured-showcase-{{ section.id }} .featured-showcase__viewport {
+      padding-inline: 2.2rem;
+    }
+
+    .featured-showcase-{{ section.id }} .featured-showcase__nav--prev { left: 0.1rem; }
+    .featured-showcase-{{ section.id }} .featured-showcase__nav--next { right: 0.1rem; }
+  }
 {%- endstyle -%}
 
 {%- liquid
@@ -55,6 +534,11 @@
   assign show_desktop_slider = false
   if section.settings.enable_desktop_slider and products_to_display > section.settings.columns_desktop
     assign show_desktop_slider = true
+  endif
+
+  assign featured_showcase_total = products_to_display
+  if featured_showcase_total < 6
+    assign featured_showcase_total = 6
   endif
 -%}
 
@@ -86,99 +570,99 @@
       {%- endif -%}
     </div>
 
-    <slider-component class="slider-mobile-gutter{% if section.settings.full_width %} slider-component-full-width{% endif %}{% if show_mobile_slider == false %} page-width{% endif %}{% if show_desktop_slider == false and section.settings.full_width == false %} page-width-desktop{% endif %}{% if show_desktop_slider %} slider-component-desktop{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-      <ul
-        id="Slider-{{ section.id }}"
-        data-id="{{ section.id }}"
-        class="grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--{{ section.settings.columns_desktop }}-col-desktop{% if section.settings.collection == blank %} grid--2-col-tablet-down{% else %} grid--{{ section.settings.columns_mobile }}-col-tablet-down{% endif %}{% if show_mobile_slider or show_desktop_slider %} slider{% if show_desktop_slider %} slider--desktop{% endif %}{% if show_mobile_slider %} slider--tablet grid--peek{% endif %}{% endif %}"
-        role="list"
-        aria-label="{{ 'general.slider.name' | t }}"
-      >
-        {% assign skip_card_product_styles = false %}
-        {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
-          <li
-            id="Slide-{{ section.id }}-{{ forloop.index }}"
-            class="grid__item{% if show_mobile_slider or show_desktop_slider %} slider__slide{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-            {% if settings.animations_reveal_on_scroll %}
-              data-cascade
-              style="--animation-order: {{ forloop.index }};"
-            {% endif %}
-          >
-            {% render 'card-product',
-              card_product: product,
-              media_aspect_ratio: section.settings.image_ratio,
-              image_shape: section.settings.image_shape,
-              show_secondary_image: section.settings.show_secondary_image,
-              show_vendor: section.settings.show_vendor,
-              show_rating: section.settings.show_rating,
-              skip_styles: skip_card_product_styles,
-              section_id: section.id,
-              quick_add: section.settings.quick_add
-            %}
-          </li>
-          {%- assign skip_card_product_styles = true -%}
-        {%- else -%}
-          {%- for i in (1..section.settings.columns_desktop) -%}
-            <li
-              class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-              {% if settings.animations_reveal_on_scroll %}
-                data-cascade
-                style="--animation-order: {{ forloop.index }};"
-              {% endif %}
-            >
-              {% liquid
-                assign ridx = forloop.rindex
-                case ridx
-                  when 5
-                    assign ridx = 1
-                  when 6
-                    assign ridx = 2
-                endcase
-              %}
-              {%- assign placeholder_image = 'product-apparel-' | append: ridx -%}
-              {% render 'card-product',
-                show_vendor: section.settings.show_vendor,
-                media_aspect_ratio: section.settings.image_ratio,
-                image_shape: section.settings.image_shape,
-                placeholder_image: placeholder_image
-              %}
-            </li>
-          {%- endfor -%}
-        {%- endfor -%}
-      </ul>
-      {%- if show_mobile_slider or show_desktop_slider -%}
-        <div class="slider-buttons">
-          <button
-            type="button"
-            class="slider-button slider-button--prev"
-            name="previous"
-            aria-label="{{ 'general.slider.previous_slide' | t }}"
-            aria-controls="Slider-{{ section.id }}"
-          >
-            <span class="svg-wrapper">
-              {{- 'icon-caret.svg' | inline_asset_content -}}
-            </span>
-          </button>
-          <div class="slider-counter caption">
-            <span class="slider-counter--current">1</span>
-            <span aria-hidden="true"> / </span>
-            <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
-            <span class="slider-counter--total">{{ products_to_display }}</span>
+    <div
+      class="featured-showcase featured-showcase-{{ section.id }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+      data-featured-showcase
+      data-section-id="{{ section.id }}"
+    >
+      <div class="featured-showcase__shell page-width">
+        <div class="featured-showcase__head">
+          <div class="featured-showcase__head-count">
+            <span data-featured-current>01</span>/<span>{{ featured_showcase_total | prepend: '0' | slice: -2, 2 }}</span>
           </div>
+        </div>
+        <div class="featured-showcase__rule"></div>
+
+        <div class="featured-showcase__viewport" data-featured-viewport>
           <button
             type="button"
-            class="slider-button slider-button--next"
-            name="next"
-            aria-label="{{ 'general.slider.next_slide' | t }}"
-            aria-controls="Slider-{{ section.id }}"
+            class="featured-showcase__nav featured-showcase__nav--prev"
+            aria-label="{{ 'general.slider.previous_slide' | t }}"
+            data-featured-prev
           >
-            <span class="svg-wrapper">
-              {{- 'icon-caret.svg' | inline_asset_content -}}
-            </span>
+            <span class="svg-wrapper">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+          </button>
+
+          <div class="featured-showcase__track" data-featured-track role="list" aria-label="{{ 'general.slider.name' | t }}">
+            {%- assign actual_featured_count = 0 -%}
+            {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
+              {%- assign actual_featured_count = actual_featured_count | plus: 1 -%}
+              <article class="featured-showcase__slide" role="listitem" data-featured-slide>
+                <a class="featured-showcase__card" href="{{ product.url }}">
+                  <div class="featured-showcase__media">
+                    {%- if product.featured_media -%}
+                      {{
+                        product.featured_media
+                        | image_url: width: 1200
+                        | image_tag:
+                          loading: 'lazy',
+                          widths: '320,480,640,800,1000,1200',
+                          sizes: '(max-width: 749px) 72vw, 34vw',
+                          alt: product.title
+                      }}
+                    {%- else -%}
+                      <div class="featured-showcase__placeholder"></div>
+                    {%- endif -%}
+                  </div>
+                  <div class="featured-showcase__shade"></div>
+                  <div class="featured-showcase__price">{{ product.price | money }}</div>
+                  <p class="featured-showcase__title-text">{{ product.title | escape }}</p>
+                </a>
+              </article>
+            {%- endfor -%}
+
+            {%- assign placeholder_needed = featured_showcase_total | minus: actual_featured_count -%}
+            {%- if placeholder_needed > 0 -%}
+              {%- for i in (1..placeholder_needed) -%}
+                {%- liquid
+                  assign pidx = forloop.index | modulo: 4
+                  case pidx
+                    when 0
+                      assign placeholder_name = 'vivid'
+                    when 1
+                      assign placeholder_name = 'bloom'
+                    when 2
+                      assign placeholder_name = 'petaled'
+                    else
+                      assign placeholder_name = 'flora'
+                  endcase
+                -%}
+                <article class="featured-showcase__slide" role="listitem" data-featured-slide>
+                  <div class="featured-showcase__card">
+                    <div class="featured-showcase__media">
+                      <div class="featured-showcase__placeholder"></div>
+                    </div>
+                    <div class="featured-showcase__shade"></div>
+                    <p class="featured-showcase__title-text">{{ placeholder_name }}</p>
+                  </div>
+                </article>
+              {%- endfor -%}
+            {%- endif -%}
+          </div>
+
+          <button
+            type="button"
+            class="featured-showcase__nav featured-showcase__nav--next"
+            aria-label="{{ 'general.slider.next_slide' | t }}"
+            data-featured-next
+          >
+            <span class="svg-wrapper">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
           </button>
         </div>
-      {%- endif -%}
-    </slider-component>
+
+        <div class="featured-showcase__dots" data-featured-dots></div>
+      </div>
+    </div>
 
     {%- if section.settings.show_view_all and more_in_collection -%}
       <div class="center collection__view-all{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
@@ -196,6 +680,98 @@
     {%- endif -%}
   </div>
 </div>
+
+<script>
+  (function () {
+    const root = document.querySelector('[data-featured-showcase][data-section-id="{{ section.id }}"]');
+    if (!root || root.dataset.featuredInit === 'true') return;
+    root.dataset.featuredInit = 'true';
+
+    const viewport = root.querySelector('[data-featured-viewport]');
+    const track = root.querySelector('[data-featured-track]');
+    const slides = Array.from(root.querySelectorAll('[data-featured-slide]'));
+    const prev = root.querySelector('[data-featured-prev]');
+    const next = root.querySelector('[data-featured-next]');
+    const dotsWrap = root.querySelector('[data-featured-dots]');
+    const current = root.querySelector('[data-featured-current]');
+    if (!viewport || !track || !slides.length) return;
+
+    let index = Math.min(1, slides.length - 1);
+    let startX = null;
+    let resizeRaf = null;
+
+    const pad2 = (n) => String(n).padStart(2, '0');
+
+    const centerActive = () => {
+      slides.forEach((slide, i) => {
+        const dist = Math.abs(i - index);
+        slide.classList.toggle('is-active', i === index);
+        slide.classList.toggle('is-far', dist > 1);
+      });
+
+      const active = slides[index];
+      const viewportWidth = viewport.clientWidth;
+      const activeCenter = active.offsetLeft + active.offsetWidth / 2;
+      const x = viewportWidth / 2 - activeCenter;
+      track.style.transform = `translate3d(${x}px,0,0)`;
+
+      if (current) current.textContent = pad2(index + 1);
+      if (dotsWrap) {
+        Array.from(dotsWrap.children).forEach((dot, i) => dot.classList.toggle('is-active', i === index));
+      }
+    };
+
+    const goTo = (i) => {
+      index = (i + slides.length) % slides.length;
+      centerActive();
+    };
+
+    if (dotsWrap) {
+      dotsWrap.innerHTML = '';
+      const slideAriaLabelPrefix = {{ 'kor.slider.slide' | t | json }};
+      slides.forEach((_, i) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'featured-showcase__dot';
+        btn.setAttribute('aria-label', `${slideAriaLabelPrefix} ${i + 1}`);
+        btn.addEventListener('click', () => goTo(i));
+        dotsWrap.appendChild(btn);
+      });
+    }
+
+    prev?.addEventListener('click', () => goTo(index - 1));
+    next?.addEventListener('click', () => goTo(index + 1));
+
+    viewport.addEventListener(
+      'touchstart',
+      (e) => {
+        startX = e.touches[0]?.clientX ?? null;
+      },
+      { passive: true }
+    );
+
+    viewport.addEventListener(
+      'touchend',
+      (e) => {
+        if (startX == null) return;
+        const endX = e.changedTouches[0]?.clientX ?? startX;
+        const delta = endX - startX;
+        startX = null;
+        if (Math.abs(delta) < 24) return;
+        goTo(delta < 0 ? index + 1 : index - 1);
+      },
+      { passive: true }
+    );
+
+    const onResize = () => {
+      if (resizeRaf) cancelAnimationFrame(resizeRaf);
+      resizeRaf = requestAnimationFrame(centerActive);
+    };
+
+    window.addEventListener('resize', onResize);
+    centerActive();
+  })();
+</script>
 
 {% schema %}
 {

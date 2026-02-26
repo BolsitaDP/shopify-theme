@@ -94,19 +94,33 @@
     border-bottom: 0;
   }
 
+  @media screen and (min-width: 990px) {
+    .section-header,
+    .section-header .header-wrapper,
+    .section-header .header-wrapper.gradient,
+    .shopify-section-group-header-group,
+    .shopify-section-group-header-group .shopify-section {
+      background: transparent !important;
+      box-shadow: none !important;
+      border-color: transparent !important;
+      -webkit-backdrop-filter: none !important;
+      backdrop-filter: none !important;
+    }
+  }
+
   .section-header .header {
     position: relative;
     margin: 0.55rem auto;
     border-radius: 2rem;
-    border: 0.1rem solid rgba(var(--color-foreground), 0.1);
+    border: 0.1rem solid rgba(var(--color-foreground), 0.06);
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.03)),
-      rgba(var(--color-background), 0.62);
+      linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.015)),
+      rgba(var(--color-background), 0.46);
     -webkit-backdrop-filter: blur(18px) saturate(1.15);
     backdrop-filter: blur(18px) saturate(1.15);
     box-shadow:
-      0 1.2rem 3rem rgba(var(--color-shadow), 0.12),
-      inset 0 0.1rem 0 rgba(255, 255, 255, 0.24);
+      0 1rem 2.4rem rgba(var(--color-shadow), 0.1),
+      inset 0 0.1rem 0 rgba(255, 255, 255, 0.08);
   }
 
   .section-header .header::before {
@@ -115,8 +129,8 @@
     inset: 0;
     border-radius: inherit;
     pointer-events: none;
-    background: radial-gradient(circle at 14% -25%, rgba(255, 255, 255, 0.28), transparent 55%);
-    opacity: 0.95;
+    background: radial-gradient(circle at 14% -25%, rgba(255, 255, 255, 0.12), transparent 55%);
+    opacity: 0.45;
   }
 
   .section-header .header > * {
@@ -131,8 +145,8 @@
   }
 
   .section-header .header__heading-link:hover {
-    background: rgba(var(--color-foreground), 0.04);
-    box-shadow: inset 0 0.1rem 0 rgba(255, 255, 255, 0.18);
+    background: rgba(var(--color-foreground), 0.025);
+    box-shadow: inset 0 0.1rem 0 rgba(255, 255, 255, 0.08);
   }
 
   .section-header .header__inline-menu .list-menu--inline {
@@ -151,10 +165,10 @@
 
   .section-header .header__menu-item:hover,
   .section-header details[open] > .header__menu-item {
-    background: rgba(var(--color-foreground), 0.06);
+    background: rgba(var(--color-foreground), 0.035);
     box-shadow:
-      inset 0 0.1rem 0 rgba(255, 255, 255, 0.22),
-      0 0.6rem 1.4rem rgba(var(--color-shadow), 0.06);
+      inset 0 0.1rem 0 rgba(255, 255, 255, 0.1),
+      0 0.5rem 1.1rem rgba(var(--color-shadow), 0.05);
     text-decoration: none;
   }
 
@@ -167,12 +181,13 @@
   .section-header .header__icons {
     gap: 0.4rem;
     padding-right: 0;
+    align-items: center;
   }
 
   .section-header .header__icon {
     border-radius: 999px;
-    border: 0.1rem solid rgba(var(--color-foreground), 0.08);
-    background: rgba(var(--color-foreground), 0.025);
+    border: 0.1rem solid rgba(var(--color-foreground), 0.05);
+    background: rgba(var(--color-foreground), 0.015);
     transition:
       background-color 180ms ease,
       border-color 180ms ease,
@@ -193,11 +208,11 @@
 
   .section-header .header__icon:hover,
   .section-header details[open] > .header__icon--menu {
-    background: rgba(var(--color-foreground), 0.07);
-    border-color: rgba(var(--color-foreground), 0.14);
+    background: rgba(var(--color-foreground), 0.04);
+    border-color: rgba(var(--color-foreground), 0.08);
     box-shadow:
-      inset 0 0.1rem 0 rgba(255, 255, 255, 0.2),
-      0 0.8rem 1.8rem rgba(var(--color-shadow), 0.08);
+      inset 0 0.1rem 0 rgba(255, 255, 255, 0.08),
+      0 0.6rem 1.4rem rgba(var(--color-shadow), 0.06);
   }
 
   .section-header .header__icon--cart {
@@ -205,6 +220,10 @@
   }
 
   .section-header .mobile-island-nav {
+    display: none;
+  }
+
+  .section-header .header__mobile-lang {
     display: none;
   }
 
@@ -217,6 +236,13 @@
     align-items: center;
     gap: 0.4rem;
     margin-right: 0.2rem;
+  }
+
+  .section-header .header-localization.header-localization--desktop .localization-form__select > span {
+    font-size: 1.2rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    max-width: 4.5ch;
   }
 
   .section-header .header-localization:not(.menu-drawer__localization) .localization-form {
@@ -657,9 +683,9 @@
     }
 
     .section-header .header-wrapper {
-      background: rgba(var(--color-background), 0.82);
-      -webkit-backdrop-filter: blur(12px) saturate(1.05);
-      backdrop-filter: blur(12px) saturate(1.05);
+      background: transparent !important;
+      -webkit-backdrop-filter: none !important;
+      backdrop-filter: none !important;
     }
 
     .section-header .header {
@@ -668,14 +694,17 @@
       border-left: 0;
       border-right: 0;
       border-top: 0;
+      background: rgb(var(--color-background)) !important;
+      -webkit-backdrop-filter: none !important;
+      backdrop-filter: none !important;
+      border-bottom: 0.1rem solid rgba(255, 255, 255, 0.08);
       box-shadow:
-        0 0.6rem 1.6rem rgba(var(--color-shadow), 0.06),
-        inset 0 0.1rem 0 rgba(255, 255, 255, 0.12);
+        0 0.6rem 1.4rem rgba(var(--color-shadow), 0.08),
+        inset 0 0.1rem 0 rgba(255, 255, 255, 0.04);
     }
 
     .section-header .header::before {
-      border-radius: 0;
-      opacity: 0.55;
+      content: none;
     }
 
     .section-header .header-wrapper--border-bottom {
@@ -692,12 +721,54 @@
       grid-template-areas: 'heading';
       grid-template-columns: 1fr;
       justify-items: center;
+      position: relative;
     }
 
     .section-header .header__heading,
     .section-header .header__heading-link {
       justify-self: center;
       text-align: center;
+    }
+
+    .section-header .header__mobile-lang {
+      position: absolute;
+      top: 50%;
+      right: 0.8rem;
+      transform: translateY(-50%);
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+      padding: 0.2rem;
+      border-radius: 999px;
+      border: 0.1rem solid rgba(var(--color-foreground), 0.08);
+      background: rgba(var(--color-background), 0.92);
+      box-shadow: 0 0.4rem 1rem rgba(var(--color-shadow), 0.06);
+    }
+
+    .section-header .header__mobile-lang-link {
+      min-width: 3.1rem;
+      height: 3.1rem;
+      padding: 0 0.7rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      text-decoration: none;
+      color: rgba(var(--color-foreground), 0.76);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 0.1rem solid transparent;
+      transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+    }
+
+    .section-header .header__mobile-lang-link[aria-current='true'] {
+      color: rgb(var(--color-foreground));
+      background: rgba(var(--color-foreground), 0.06);
+      border-color: rgba(var(--color-foreground), 0.08);
+      box-shadow: inset 0 0.1rem 0 rgba(255, 255, 255, 0.06);
     }
 
     .section-header .mobile-island-nav {
@@ -799,17 +870,60 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 4.4rem;
+      width: auto;
       min-height: 4.8rem;
       padding-right: 0;
+      gap: 0.5rem;
       overflow: visible;
     }
 
+    .section-header .mobile-island-nav__lang {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+      padding: 0.2rem;
+      border-radius: 999px;
+      border: 0.1rem solid rgba(var(--color-foreground), 0.08);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.015)),
+        rgba(var(--color-background), 0.68);
+      -webkit-backdrop-filter: blur(12px) saturate(1.05);
+      backdrop-filter: blur(12px) saturate(1.05);
+      box-shadow:
+        0 0.6rem 1.4rem rgba(var(--color-shadow), 0.08),
+        inset 0 0.1rem 0 rgba(255, 255, 255, 0.08);
+    }
+
+    .section-header .mobile-island-nav__lang-link {
+      min-width: 3.4rem;
+      height: 3.4rem;
+      padding: 0 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      text-decoration: none;
+      color: rgba(var(--color-foreground), 0.76);
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 0.1rem solid transparent;
+      transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+    }
+
+    .section-header .mobile-island-nav__lang-link[aria-current='true'] {
+      color: rgb(var(--color-foreground));
+      background: rgba(var(--color-foreground), 0.06);
+      border-color: rgba(var(--color-foreground), 0.08);
+      box-shadow: inset 0 0.1rem 0 rgba(255, 255, 255, 0.08);
+    }
+
     .section-header .mobile-island-nav__icon-btn {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      position: relative;
+      top: auto;
+      left: auto;
+      transform: none;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -828,6 +942,7 @@
         0 0.8rem 1.8rem rgba(var(--color-shadow), 0.12),
         inset 0 0.1rem 0 rgba(255, 255, 255, 0.18);
       z-index: 1;
+      flex: 0 0 auto;
     }
 
     .section-header .mobile-island-nav__icon-btn .svg-wrapper {
@@ -1062,30 +1177,20 @@
       {%- endif -%}
     {%- endif -%}
 
-    <div class="header__icons{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header__icons--localization header-localization{% endif %}">
-      <div class="desktop-localization-wrapper">
-        {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
-          <localization-form class="small-hide medium-hide" data-prevent-hide>
-            {%- form 'localization', id: 'HeaderCountryForm', class: 'localization-form' -%}
-              <div>
-                <h2 class="visually-hidden" id="HeaderCountryLabel">{{ 'localization.country_label' | t }}</h2>
-                {%- render 'country-localization', localPosition: 'HeaderCountry' -%}
-              </div>
-            {%- endform -%}
-          </localization-form>
-        {% endif %}
-
-        {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
-          <localization-form class="small-hide medium-hide" data-prevent-hide>
-            {%- form 'localization', id: 'HeaderLanguageForm', class: 'localization-form' -%}
-              <div>
+    <div class="header__icons">
+      {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
+        <div class="header-localization header-localization--desktop small-hide">
+          <div class="desktop-localization-wrapper">
+            <localization-form>
+              {%- form 'localization', id: 'HeaderLanguageForm', class: 'localization-form' -%}
                 <h2 class="visually-hidden" id="HeaderLanguageLabel">{{ 'localization.language_label' | t }}</h2>
                 {%- render 'language-localization', localPosition: 'HeaderLanguage' -%}
-              </div>
-            {%- endform -%}
-          </localization-form>
-        {%- endif -%}
-      </div>
+              {%- endform -%}
+            </localization-form>
+          </div>
+        </div>
+      {%- endif -%}
+
       {% render 'header-search', input_id: 'Search-In-Modal' %}
 
       {%- if shop.customer_accounts_enabled -%}
@@ -1141,10 +1246,28 @@
         {%- endif -%}
       </a>
     </div>
+
+    {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
+      <div class="header__mobile-lang" role="group" aria-label="{{ 'localization.language_label' | t }}">
+        {%- for language in localization.available_languages -%}
+          <a
+            href="{{ language.root_url }}"
+            lang="{{ language.iso_code }}"
+            hreflang="{{ language.iso_code }}"
+            class="header__mobile-lang-link"
+            {% if language.iso_code == localization.language.iso_code %}
+              aria-current="true"
+            {% endif %}
+          >
+            {{ language.iso_code }}
+          </a>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
   </header>
 </{% if section.settings.sticky_header_type != 'none' %}sticky-header{% else %}div{% endif %}>
 
-<nav class="mobile-island-nav" aria-label="Mobile quick navigation">
+<nav class="mobile-island-nav" aria-label="{{ 'kor.header.mobile_quick_navigation' | t }}">
   <div class="mobile-island-nav__bar">
     <div class="mobile-island-nav__links" role="list">
       {%- if section.settings.menu != blank -%}

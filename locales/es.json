@@ -545,5 +545,13 @@
       "expanded": "Formulario del destinatario de la tarjeta de regalo expandido",
       "collapsed": "Formulario del destinatario de tarjeta de regalo contraído"
     }
+  },
+  "kor": {
+    "header": {
+      "mobile_quick_navigation": "Navegacion rapida movil"
+    },
+    "slider": {
+      "slide": "Diapositiva"
+    }
   }
 }

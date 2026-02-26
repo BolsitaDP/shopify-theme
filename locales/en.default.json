@@ -534,5 +534,13 @@
       "send_on": "YYYY-MM-DD",
       "send_on_label": "Send on (optional)"
     }
+  },
+  "kor": {
+    "header": {
+      "mobile_quick_navigation": "Mobile quick navigation"
+    },
+    "slider": {
+      "slide": "Slide"
+    }
   }
 }

@@ -3595,3 +3595,243 @@ details-disclosure > details {
     transform: translateX(100%) scaleX(0);
   }
 }
+
+/* Kor global dark theme override */
+html {
+  background: #07080b;
+}
+
+body {
+  background-color: #07080b !important;
+  color: rgba(236, 239, 244, 0.86);
+  position: relative;
+  isolation: isolate;
+}
+
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::before {
+  background:
+    radial-gradient(18rem 18rem at 14% 12%, rgba(74, 174, 255, 0.12), transparent 68%),
+    radial-gradient(16rem 16rem at 84% 14%, rgba(198, 98, 255, 0.09), transparent 70%),
+    radial-gradient(14rem 14rem at 72% 72%, rgba(74, 255, 204, 0.08), transparent 72%),
+    radial-gradient(15rem 15rem at 26% 78%, rgba(255, 166, 78, 0.07), transparent 72%),
+    radial-gradient(60rem 60rem at 8% 8%, rgba(120, 175, 255, 0.08), transparent 62%),
+    radial-gradient(48rem 48rem at 92% 16%, rgba(198, 160, 255, 0.06), transparent 64%),
+    radial-gradient(58rem 58rem at 76% 92%, rgba(100, 234, 205, 0.045), transparent 66%),
+    linear-gradient(180deg, #090a0d 0%, #07080b 42%, #06070a 100%);
+  filter: saturate(110%);
+}
+
+body::after {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.018) 0.1rem, transparent 0.1rem),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 0.1rem, transparent 0.1rem);
+  background-size: 3.2rem 3.2rem;
+  opacity: 0.24;
+  mask-image: radial-gradient(circle at center, black 20%, transparent 95%);
+  -webkit-mask-image: radial-gradient(circle at center, black 20%, transparent 95%);
+}
+
+body,
+.gradient,
+[class^='color-'],
+[class*=' color-'] {
+  --color-background: 10, 11, 14 !important;
+  --color-background-contrast: 31, 33, 39 !important;
+  --color-foreground: 234, 238, 244 !important;
+  --color-shadow: 0, 0, 0 !important;
+  --color-link: 234, 238, 244 !important;
+  --color-secondary-button: 10, 11, 14 !important;
+  --color-secondary-button-text: 234, 238, 244 !important;
+  --color-badge-background: 14, 16, 21 !important;
+  --color-badge-border: 230, 235, 243 !important;
+  --gradient-background: radial-gradient(circle at 12% 8%, rgba(255,255,255,0.03), transparent 40%), linear-gradient(180deg, #0c0d11 0%, #090a0d 100%) !important;
+}
+
+.gradient {
+  background: var(--gradient-background) !important;
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+.shopify-section,
+.section,
+.page-width,
+.page-width-desktop {
+  position: relative;
+}
+
+.header-wrapper,
+.header-wrapper--border-bottom,
+.utility-bar,
+.menu-drawer,
+.drawer,
+.cart-notification,
+.predictive-search,
+.shopify-policy__container,
+.customer,
+.main-page-title + *,
+.product__info-container,
+.product__media-wrapper,
+.facets-container,
+.facets__form,
+.collection-hero__inner,
+.pagination-wrapper {
+  background-color: transparent;
+}
+
+.content-container,
+.card__inner,
+.card,
+.multicolumn-card,
+.collection-list__item .card-wrapper,
+.product-form__input,
+.quantity,
+.field__input,
+.select__select,
+.customer .field input,
+.customer select,
+.localization-form__select,
+.shopify-payment-button__button--unbranded {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+.content-container,
+.card__inner,
+.multicolumn-card,
+.product__media-wrapper,
+.product__info-wrapper,
+.drawer,
+.menu-drawer,
+.cart-notification,
+.predictive-search {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015)),
+    rgba(13, 14, 18, 0.74) !important;
+  box-shadow:
+    inset 0 0 0 0.1rem rgba(255, 255, 255, 0.03),
+    0 1.2rem 3rem rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(12px) saturate(120%);
+  -webkit-backdrop-filter: blur(12px) saturate(120%);
+}
+
+.button,
+.shopify-challenge__button,
+.customer button,
+.shopify-payment-button__button--unbranded {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.03)),
+    rgba(22, 24, 30, 0.9) !important;
+  color: rgba(245, 247, 250, 0.94) !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
+  box-shadow:
+    inset 0 0 0 0.1rem rgba(255, 255, 255, 0.02),
+    0 0.8rem 2rem rgba(0, 0, 0, 0.16);
+}
+
+.button.button--secondary {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
+    rgba(12, 13, 17, 0.72) !important;
+}
+
+.field__input,
+.select__select,
+.customer .field input,
+.customer select,
+textarea {
+  background-color: rgba(14, 16, 20, 0.86) !important;
+  color: rgba(235, 239, 245, 0.92) !important;
+}
+
+.field__label,
+.customer .field label,
+.product__tax,
+.caption-with-letter-spacing,
+.caption {
+  color: rgba(220, 226, 235, 0.62) !important;
+}
+
+a,
+.link,
+.underlined-link {
+  color: rgba(236, 239, 244, 0.9);
+}
+
+.header__heading-link,
+.header__menu-item,
+.header__icon,
+.list-menu__item,
+.menu-drawer__menu-item {
+  color: rgba(238, 241, 246, 0.9) !important;
+}
+
+.header-wrapper {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01)),
+    rgba(9, 10, 13, 0.8) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(14px) saturate(120%);
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
+}
+
+.announcement-bar,
+.shopify-section-group-header-group {
+  background-color: transparent !important;
+}
+
+.footer {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0)),
+    rgba(8, 9, 12, 0.94) !important;
+  border-top-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Single shared page canvas: section wrappers stay transparent */
+.shopify-section,
+.shopify-section > *,
+.shopify-section .gradient,
+.shopify-section [class^='color-'],
+.shopify-section [class*=' color-'] {
+  background-color: transparent !important;
+}
+
+.shopify-section .gradient {
+  background-image: none !important;
+  background: transparent !important;
+}
+
+.shopify-section .collection,
+.shopify-section .multicolumn,
+.shopify-section .rich-text,
+.shopify-section .image-with-text,
+.shopify-section .slideshow,
+.shopify-section .banner,
+.shopify-section .newsletter,
+.shopify-section .featured-blog,
+.shopify-section .featured-product,
+.shopify-section .video-section {
+  background: transparent !important;
+}
+
+.shopify-section .section-collections-showcase,
+.shopify-section .section-why-us {
+  background: transparent !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::after {
+    opacity: 0.15;
+  }
+}

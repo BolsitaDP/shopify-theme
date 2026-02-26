@@ -1,4 +1,4 @@
-/*
+﻿/*
  * ------------------------------------------------------------
  * IMPORTANT: The contents of this file are auto-generated.
  *
@@ -8,77 +8,178 @@
  * ------------------------------------------------------------
  */
 {
-  "sections": {
-    "image_banner": {
-      "type": "image-banner",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
-          }
-        },
-        "button": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "button"
-      ],
-      "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
-      }
-    },
-    "featured_collection": {
-      "type": "featured-collection",
-      "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 44,
-        "padding_bottom": 36
-      }
-    }
-  },
-  "order": [
-    "image_banner",
-    "featured_collection"
-  ]
+    "sections":  {
+                     "image_banner":  {
+                                          "type":  "image-banner",
+                                          "blocks":  {
+                                                         "heading":  {
+                                                                         "type":  "heading",
+                                                                         "settings":  {
+                                                                                          "heading":  "Browse our latest products",
+                                                                                          "heading_size":  "h0"
+                                                                                      }
+                                                                     },
+                                                         "button":  {
+                                                                        "type":  "buttons",
+                                                                        "settings":  {
+                                                                                         "button_label_1":  "Shop all",
+                                                                                         "button_link_1":  "shopify://collections/all",
+                                                                                         "button_style_secondary_1":  true,
+                                                                                         "button_label_2":  "",
+                                                                                         "button_link_2":  "",
+                                                                                         "button_style_secondary_2":  false
+                                                                                     }
+                                                                    }
+                                                     },
+                                          "block_order":  [
+                                                              "heading",
+                                                              "button"
+                                                          ],
+                                          "settings":  {
+                                                           "image_overlay_opacity":  40,
+                                                           "image_height":  "large",
+                                                           "desktop_content_position":  "bottom-center",
+                                                           "show_text_box":  false,
+                                                           "image_behavior":  "none",
+                                                           "desktop_content_alignment":  "center",
+                                                           "color_scheme":  "scheme-3",
+                                                           "mobile_content_alignment":  "center",
+                                                           "stack_images_on_mobile":  false,
+                                                           "show_text_below":  false
+                                                       }
+                                      },
+                     "featured_collection":  {
+                                                 "type":  "featured-collection",
+                                                 "settings":  {
+                                                                  "title":  "Featured products",
+                                                                  "heading_size":  "h2",
+                                                                  "description":  "",
+                                                                  "show_description":  false,
+                                                                  "description_style":  "body",
+                                                                  "collection":  "all",
+                                                                  "products_to_show":  8,
+                                                                  "columns_desktop":  4,
+                                                                  "color_scheme":  "scheme-1",
+                                                                  "full_width":  false,
+                                                                  "show_view_all":  true,
+                                                                  "view_all_style":  "solid",
+                                                                  "enable_desktop_slider":  false,
+                                                                  "swipe_on_mobile":  false,
+                                                                  "image_ratio":  "adapt",
+                                                                  "image_shape":  "default",
+                                                                  "show_secondary_image":  true,
+                                                                  "show_vendor":  false,
+                                                                  "show_rating":  false,
+                                                                  "quick_add":  "none",
+                                                                  "columns_mobile":  "2",
+                                                                  "padding_top":  44,
+                                                                  "padding_bottom":  36
+                                                              }
+                                             },
+                     "why_us":  {
+                                    "type":  "why-us",
+                                    "blocks":  {
+                                                   "why_us_item_1":  {
+                                                                         "type":  "item",
+                                                                         "settings":  {
+                                                                                          "icon_text":  "01",
+                                                                                          "title":  "Diseno con intencion",
+                                                                                          "text":  "Cada pieza existe por una razon: forma, funcion y detalle en equilibrio."
+                                                                                      }
+                                                                     },
+                                                   "why_us_item_2":  {
+                                                                         "type":  "item",
+                                                                         "settings":  {
+                                                                                          "icon_text":  "02",
+                                                                                          "title":  "Materiales premium",
+                                                                                          "text":  "Acabados y texturas que se perciben desde el primer contacto."
+                                                                                      }
+                                                                     },
+                                                   "why_us_item_3":  {
+                                                                         "type":  "item",
+                                                                         "settings":  {
+                                                                                          "icon_text":  "03",
+                                                                                          "title":  "Detalles precisos",
+                                                                                          "text":  "Nada sobra. Nada distrae. Cada elemento esta cuidado para durar."
+                                                                                      }
+                                                                     },
+                                                   "why_us_item_4":  {
+                                                                         "type":  "item",
+                                                                         "settings":  {
+                                                                                          "icon_text":  "04",
+                                                                                          "title":  "Experiencia Kor",
+                                                                                          "text":  "Compra, presentacion y uso con una sensacion premium de principio a fin."
+                                                                                      }
+                                                                     }
+                                               },
+                                    "block_order":  [
+                                                        "why_us_item_1",
+                                                        "why_us_item_2",
+                                                        "why_us_item_3",
+                                                        "why_us_item_4"
+                                                    ],
+                                    "settings":  {
+                                                     "eyebrow":  "Por que Kor",
+                                                     "title":  "Menos ruido. Mas criterio.",
+                                                     "subtitle":  "Kor crea productos con una estetica limpia, materiales premium y una experiencia pensada para quienes valoran el detalle.",
+                                                     "heading_size":  "h1",
+                                                     "color_scheme":  "scheme-1",
+                                                     "padding_top":  28,
+                                                     "padding_bottom":  24
+                                                 }
+                                },
+                     "collections_kor":  {
+                                             "type":  "collection-list",
+                                             "blocks":  {
+                                                            "collection_card_1":  {
+                                                                                      "type":  "featured_collection",
+                                                                                      "settings":  {
+                                                                                                       "collection":  "all"
+                                                                                                   }
+                                                                                  },
+                                                            "collection_card_2":  {
+                                                                                      "type":  "featured_collection",
+                                                                                      "settings":  {
+                                                                                                       "collection":  "all"
+                                                                                                   }
+                                                                                  },
+                                                            "collection_card_3":  {
+                                                                                      "type":  "featured_collection",
+                                                                                      "settings":  {
+                                                                                                       "collection":  "all"
+                                                                                                   }
+                                                                                  },
+                                                            "collection_card_4":  {
+                                                                                      "type":  "featured_collection",
+                                                                                      "settings":  {
+                                                                                                       "collection":  "all"
+                                                                                                   }
+                                                                                  }
+                                                        },
+                                             "block_order":  [
+                                                                 "collection_card_1",
+                                                                 "collection_card_2",
+                                                                 "collection_card_3",
+                                                                 "collection_card_4"
+                                                             ],
+                                             "settings":  {
+                                                              "title":  "Universos de Kor",
+                                                              "heading_size":  "h1",
+                                                              "image_ratio":  "square",
+                                                              "columns_desktop":  4,
+                                                              "color_scheme":  "scheme-1",
+                                                              "show_view_all":  false,
+                                                              "columns_mobile":  "1",
+                                                              "swipe_on_mobile":  true,
+                                                              "padding_top":  28,
+                                                              "padding_bottom":  36
+                                                          }
+                                         }
+                 },
+    "order":  [
+                  "image_banner",
+                  "why_us",
+                  "featured_collection",
+                  "collections_kor"
+              ]
 }
