@@ -276,9 +276,133 @@
   z-index: 2;
 }
 
+.banner__brand-mark {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.4rem;
+  pointer-events: none;
+}
+
+.banner__brand-mark img {
+  display: block;
+  width: min(32rem, 70vw);
+  max-width: 100%;
+  height: auto;
+}
+
+.banner--home-hero {
+  background: transparent;
+}
+
+.banner--home-hero .banner__box {
+  background: transparent;
+  box-shadow: none;
+}
+
+.banner--home-hero .banner__buttons .button {
+  min-height: 5.2rem;
+  padding: 0 3.2rem;
+  border: 0.1rem solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.08));
+  box-shadow:
+    0 1.2rem 3.2rem rgba(0, 0, 0, 0.18),
+    inset 0 0.1rem 0 rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  transition:
+    transform var(--duration-short) ease,
+    box-shadow var(--duration-short) ease,
+    background var(--duration-short) ease;
+}
+
+.banner--home-hero .banner__buttons .button::before,
+.banner--home-hero .banner__buttons .button::after {
+  display: none;
+}
+
+.banner--home-hero .banner__buttons .button:not([disabled]):hover {
+  transform: translateY(-0.2rem);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.12));
+  box-shadow:
+    0 1.8rem 3.8rem rgba(0, 0, 0, 0.22),
+    inset 0 0.1rem 0 rgba(255, 255, 255, 0.26);
+}
+
+.banner--home-hero .banner__buttons .button:focus-visible,
+.banner--home-hero .banner__buttons .button:focus,
+.banner--home-hero .banner__buttons .button.focused {
+  outline: 0;
+  box-shadow:
+    0 0 0 0.2rem rgba(255, 255, 255, 0.18),
+    0 0 0 0.45rem rgba(255, 255, 255, 0.3),
+    0 1.2rem 3.2rem rgba(0, 0, 0, 0.18);
+}
+
+@media screen and (max-width: 749px) {
+  .banner--home-hero {
+    min-height: 39rem;
+  }
+
+  .banner--home-hero .banner__brand-mark {
+    align-items: center;
+    padding: 4.8rem 2.4rem 12rem;
+  }
+
+  .banner--home-hero .banner__brand-mark img {
+    width: min(25rem, 62vw);
+  }
+
+  .banner--home-hero .banner__content {
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .banner--home-hero .banner__box {
+    min-height: 39rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 1.2rem;
+    padding: 0 2rem 3.2rem;
+  }
+
+  .banner--home-hero .banner__heading {
+    max-width: 22rem;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 0.95;
+  }
+
+  .banner--home-hero .banner__buttons {
+    justify-content: center;
+    margin-top: 0;
+  }
+
+  .banner--home-hero .banner__buttons .button {
+    min-height: 4.8rem;
+    padding: 0 2.8rem;
+    font-size: 1.1rem;
+    letter-spacing: 0.16em;
+  }
+}
+
 @media screen and (min-width: 750px) {
   .banner__content {
     padding: 5rem;
+  }
+
+  .banner__brand-mark img {
+    width: min(48rem, 42vw);
   }
 
   .banner__content--top-left {

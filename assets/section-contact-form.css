@@ -2,6 +2,133 @@
   max-width: 100%;
 }
 
+.contact--glass {
+  position: relative;
+  padding: 2.4rem;
+  border: 0.1rem solid rgba(255, 255, 255, 0.14);
+  border-radius: 3.2rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.05));
+  box-shadow:
+    0 2.4rem 6rem rgba(0, 0, 0, 0.14),
+    inset 0 0.1rem 0 rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(26px) saturate(145%);
+  -webkit-backdrop-filter: blur(26px) saturate(145%);
+}
+
+.contact--glass .title {
+  margin-bottom: 2.4rem;
+}
+
+.contact--glass .field {
+  margin-bottom: 1.8rem;
+}
+
+.contact--glass .field:before {
+  border-radius: 2rem;
+  box-shadow:
+    0 1.6rem 3.6rem rgba(0, 0, 0, 0.14),
+    inset 0 0.1rem 0 rgba(255, 255, 255, 0.08);
+}
+
+.contact--glass .field:after {
+  display: none;
+}
+
+.contact--glass .field:hover.field:after {
+  display: none;
+}
+
+.contact--glass .field__input,
+.contact--glass .text-area {
+  min-height: 5.6rem;
+  padding: 2.1rem 1.8rem 0.9rem 2rem;
+  margin: 0;
+  border-radius: 2rem;
+  border: 0.1rem solid rgba(255, 255, 255, 0.16);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.06));
+  color: rgba(255, 255, 255, 0.96);
+  box-shadow: inset 0 0.1rem 0 rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+}
+
+.contact--glass .text-area {
+  min-height: 16rem;
+  padding-top: 2.5rem;
+}
+
+.contact--glass .field__input:focus,
+.contact--glass .field__input:focus-visible,
+.contact--glass .field__input:not(:placeholder-shown),
+.contact--glass .field__input:-webkit-autofill,
+.contact--glass .text-area:focus,
+.contact--glass .text-area:focus-visible {
+  margin: 0;
+  padding: 2.1rem 1.8rem 0.9rem 2rem;
+  border-color: rgba(255, 255, 255, 0.34);
+  box-shadow:
+    inset 0 0.1rem 0 rgba(255, 255, 255, 0.18),
+    0 0 0 0.1rem rgba(255, 255, 255, 0.34);
+}
+
+.contact--glass .field__label {
+  color: rgba(255, 255, 255, 0.68);
+  left: 2rem;
+  top: 1.55rem;
+  letter-spacing: 0.08rem;
+}
+
+.contact--glass .field__input:focus ~ .field__label,
+.contact--glass .field__input:not(:placeholder-shown) ~ .field__label,
+.contact--glass .field__input:-webkit-autofill ~ .field__label {
+  top: 0.75rem;
+  left: 2rem;
+  color: rgba(255, 255, 255, 0.52);
+}
+
+.contact--glass .field__input:-webkit-autofill,
+.contact--glass .field__input:-webkit-autofill:hover,
+.contact--glass .field__input:-webkit-autofill:focus,
+.contact--glass .text-area:-webkit-autofill,
+.contact--glass .text-area:-webkit-autofill:hover,
+.contact--glass .text-area:-webkit-autofill:focus {
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.96);
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+.contact--glass .form__message,
+.contact--glass .form-status-list,
+.contact--glass .contact__field-error,
+.contact--glass .link {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.contact--glass .contact__button .button {
+  min-height: 5.2rem;
+  padding: 0 3.2rem;
+  border: 0.1rem solid rgba(255, 255, 255, 0.26);
+  border-radius: 999px;
+  color: #ffffff;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.08));
+  box-shadow:
+    0 1.8rem 4rem rgba(0, 0, 0, 0.16),
+    inset 0 0.1rem 0 rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(18px) saturate(145%);
+  -webkit-backdrop-filter: blur(18px) saturate(145%);
+}
+
+.contact--glass .contact__button .button::before,
+.contact--glass .contact__button .button::after {
+  display: none;
+}
+
+.contact--glass .contact__button .button:not([disabled]):hover {
+  transform: translateY(-0.1rem);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0.1));
+}
+
 .contact .form__message {
   align-items: flex-start;
 }
@@ -17,6 +144,10 @@
 @media screen and (min-width: 750px) {
   .contact .field {
     margin-bottom: 2rem;
+  }
+
+  .contact--glass {
+    padding: 3.2rem;
   }
 }
 
@@ -35,5 +166,23 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 2rem;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .contact--glass {
+    padding: 1.8rem;
+    border-radius: 2.4rem;
+  }
+
+  .contact--glass .field:before,
+  .contact--glass .field:after,
+  .contact--glass .field__input,
+  .contact--glass .text-area {
+    border-radius: 1.8rem;
+  }
+
+  .contact--glass .contact__button .button {
+    width: 100%;
   }
 }

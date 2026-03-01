@@ -3,8 +3,111 @@
   margin-bottom: 0;
 }
 
+.section-collection-list--glass {
+  background: transparent;
+}
+
+.collection-list-wrapper--glass {
+  position: relative;
+  padding: 2.4rem;
+  border: 0.1rem solid rgba(255, 255, 255, 0.16);
+  border-radius: 3.2rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
+  box-shadow:
+    0 2.4rem 6rem rgba(0, 0, 0, 0.14),
+    inset 0 0.1rem 0 rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+}
+
+.collection-list-wrapper--glass .title-wrapper--glass {
+  margin-bottom: 2.4rem;
+}
+
 .collection-list-title {
   margin: 0;
+}
+
+.collection-list-wrapper--glass .collection-list-title {
+  display: inline-flex;
+  align-items: center;
+  padding: 1rem 1.8rem;
+  border: 0.1rem solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 0.1rem 0 rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.collection-list-wrapper--glass .collection-list__item {
+  padding: 0.2rem;
+}
+
+.collection-list-wrapper--glass .card-wrapper {
+  height: 100%;
+}
+
+.collection-list-wrapper--glass .card {
+  height: 100%;
+  overflow: hidden;
+  border: 0.1rem solid rgba(255, 255, 255, 0.16);
+  border-radius: 2.8rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.06));
+  box-shadow:
+    0 1.8rem 4rem rgba(0, 0, 0, 0.16),
+    inset 0 0.1rem 0 rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+}
+
+.collection-list-wrapper--glass .card::after,
+.collection-list-wrapper--glass .card__inner::after {
+  display: none;
+}
+
+.collection-list-wrapper--glass .card__inner {
+  border: 0;
+  background: transparent;
+}
+
+.collection-list-wrapper--glass .card__media {
+  margin: 1.2rem;
+  width: calc(100% - 2.4rem);
+}
+
+.collection-list-wrapper--glass .card .media {
+  border-radius: 2rem;
+  overflow: hidden;
+}
+
+.collection-list-wrapper--glass .card__content {
+  padding: 1.8rem 1.8rem 2rem;
+}
+
+.collection-list-wrapper--glass .card__information {
+  padding: 0;
+}
+
+.collection-list-wrapper--glass .card__heading a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.collection-list-wrapper--glass .icon-wrap {
+  margin-left: 0;
+}
+
+@media screen and (max-width: 749px) {
+  .collection-list-wrapper--glass {
+    padding: 1.8rem;
+    border-radius: 2.4rem;
+  }
+
+  .collection-list-wrapper--glass .collection-list-title {
+    padding: 0.85rem 1.5rem;
+  }
 }
 
 @media screen and (max-width: 749px) {
