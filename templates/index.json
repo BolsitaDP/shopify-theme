@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
     "sections":  {
                      "image_banner":  {
@@ -74,32 +83,32 @@
                                                                          "type":  "item",
                                                                          "settings":  {
                                                                                           "icon_text":  "01",
-                                                                                          "title":  "Diseno con intencion",
-                                                                                          "text":  "Cada pieza existe por una razon: forma, funcion y detalle en equilibrio."
+                                                                                          "title":  "Design with intent",
+                                                                                          "text":  "Every piece exists for a reason: form, function, and detail in balance."
                                                                                       }
                                                                      },
                                                    "why_us_item_2":  {
                                                                          "type":  "item",
                                                                          "settings":  {
                                                                                           "icon_text":  "02",
-                                                                                          "title":  "Materiales premium",
-                                                                                          "text":  "Acabados y texturas que se perciben desde el primer contacto."
+                                                                                          "title":  "Premium materials",
+                                                                                          "text":  "Finishes and textures you can feel from the first touch."
                                                                                       }
                                                                      },
                                                    "why_us_item_3":  {
                                                                          "type":  "item",
                                                                          "settings":  {
                                                                                           "icon_text":  "03",
-                                                                                          "title":  "Detalles precisos",
-                                                                                          "text":  "Nada sobra. Nada distrae. Cada elemento esta cuidado para durar."
+                                                                                          "title":  "Precise details",
+                                                                                          "text":  "Nothing extra. Nothing distracting. Every element is crafted to last."
                                                                                       }
                                                                      },
                                                    "why_us_item_4":  {
                                                                          "type":  "item",
                                                                          "settings":  {
                                                                                           "icon_text":  "04",
-                                                                                          "title":  "Experiencia Kor",
-                                                                                          "text":  "Compra, presentacion y uso con una sensacion premium de principio a fin."
+                                                                                          "title":  "Kor experience",
+                                                                                          "text":  "Shopping, presentation, and use with a premium feel from start to finish."
                                                                                       }
                                                                      }
                                                },
@@ -110,9 +119,9 @@
                                                         "why_us_item_4"
                                                     ],
                                     "settings":  {
-                                                     "eyebrow":  "Por que Kor",
-                                                     "title":  "Menos ruido. Mas criterio.",
-                                                     "subtitle":  "Kor crea productos con una estetica limpia, materiales premium y una experiencia pensada para quienes valoran el detalle.",
+                                                     "eyebrow":  "Why Kor",
+                                                     "title":  "Less noise. More criteria.",
+                                                     "subtitle":  "Kor creates products with clean aesthetics, premium materials, and an experience built for people who value detail.",
                                                      "heading_size":  "h1",
                                                      "color_scheme":  "scheme-1",
                                                      "padding_top":  28,

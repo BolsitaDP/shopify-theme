@@ -393,53 +393,145 @@
   }
 {%- endstyle -%}
 
+{%- liquid
+  assign locale_code = localization.language.iso_code | default: request.locale.iso_code | downcase
+  assign is_spanish = false
+  if locale_code contains 'es'
+    assign is_spanish = true
+  endif
+
+  if is_spanish
+    assign eyebrow_text = 'Por que Kor'
+    assign title_text = 'Menos ruido. Mas criterio.'
+    assign subtitle_text = 'Kor crea productos con una estetica limpia, materiales premium y una experiencia pensada para quienes valoran el detalle.'
+  else
+    assign eyebrow_text = section.settings.eyebrow
+    assign title_text = section.settings.title
+    assign subtitle_text = section.settings.subtitle
+  endif
+
+  assign translated_eyebrow = 'sections.why_us.eyebrow' | t
+  assign translated_title = 'sections.why_us.title' | t
+  assign translated_subtitle = 'sections.why_us.subtitle' | t
+
+  unless translated_eyebrow contains 'translation missing'
+    assign eyebrow_text = translated_eyebrow
+  endunless
+
+  unless translated_title contains 'translation missing'
+    assign title_text = translated_title
+  endunless
+
+  unless translated_subtitle contains 'translation missing'
+    assign subtitle_text = translated_subtitle
+  endunless
+-%}
+
 <section class="why-us why-us-{{ section.id }} color-{{ section.settings.color_scheme }} gradient">
   <div class="page-width section-{{ section.id }}-padding">
     <div class="why-us__shell">
       <div class="why-us__head">
-        {%- if section.settings.eyebrow != blank -%}
-          <p class="why-us__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        {%- if eyebrow_text != blank -%}
+          <p class="why-us__eyebrow">{{ eyebrow_text | escape }}</p>
         {%- endif -%}
-        {%- if section.settings.title != blank -%}
-          <h2 class="why-us__title inline-richtext {{ section.settings.heading_size }}">{{ section.settings.title }}</h2>
+        {%- if title_text != blank -%}
+          <h2 class="why-us__title inline-richtext {{ section.settings.heading_size }}">{{ title_text }}</h2>
         {%- endif -%}
-        {%- if section.settings.subtitle != blank -%}
-          <p class="why-us__subtitle">{{ section.settings.subtitle }}</p>
+        {%- if subtitle_text != blank -%}
+          <p class="why-us__subtitle">{{ subtitle_text }}</p>
         {%- endif -%}
       </div>
 
       <div class="why-us__grid" role="list">
         {%- for block in section.blocks -%}
+          {%- liquid
+            assign card_title = block.settings.title | default: ''
+            assign card_text = block.settings.text | default: ''
+
+            if is_spanish and forloop.index <= 4
+              case forloop.index
+                when 1
+                  assign card_title = 'Diseno con intencion'
+                  assign card_text = 'Cada pieza existe por una razon: forma, funcion y detalle en equilibrio.'
+                when 2
+                  assign card_title = 'Materiales premium'
+                  assign card_text = 'Acabados y texturas que se perciben desde el primer contacto.'
+                when 3
+                  assign card_title = 'Detalles precisos'
+                  assign card_text = 'Nada sobra. Nada distrae. Cada elemento esta cuidado para durar.'
+                when 4
+                  assign card_title = 'Experiencia Kor'
+                  assign card_text = 'Compra, presentacion y uso con una sensacion premium de principio a fin.'
+              endcase
+            endif
+
+            assign card_title_key = 'sections.why_us.items.item_' | append: forloop.index | append: '.title'
+            assign card_text_key = 'sections.why_us.items.item_' | append: forloop.index | append: '.text'
+            assign translated_card_title = card_title_key | t
+            assign translated_card_text = card_text_key | t
+
+            unless translated_card_title contains 'translation missing'
+              assign card_title = translated_card_title
+            endunless
+
+            unless translated_card_text contains 'translation missing'
+              assign card_text = translated_card_text
+            endunless
+          -%}
           <article class="why-us__card" role="listitem" {{ block.shopify_attributes }}>
             <span class="why-us__index">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
             {%- if block.settings.icon_text != blank -%}
               <div class="why-us__icon" aria-hidden="true">{{ block.settings.icon_text | escape }}</div>
             {%- endif -%}
-            {%- if block.settings.title != blank -%}
-              <h3 class="why-us__card-title">{{ block.settings.title | escape }}</h3>
+            {%- if card_title != blank -%}
+              <h3 class="why-us__card-title">{{ card_title | escape }}</h3>
             {%- endif -%}
-            {%- if block.settings.text != blank -%}
-              <p class="why-us__card-text">{{ block.settings.text }}</p>
+            {%- if card_text != blank -%}
+              <p class="why-us__card-text">{{ card_text }}</p>
             {%- endif -%}
           </article>
         {%- else -%}
           <article class="why-us__card" role="listitem">
             <span class="why-us__index">01</span>
             <div class="why-us__icon" aria-hidden="true">A</div>
-            <h3 class="why-us__card-title">Calidad cuidada</h3>
-            <p class="why-us__card-text">Seleccionamos materiales y acabados con un enfoque duradero.</p>
+            <h3 class="why-us__card-title">
+              {%- if is_spanish -%}Diseno con intencion{%- else -%}Design with intent{%- endif -%}
+            </h3>
+            <p class="why-us__card-text">
+              {%- if is_spanish -%}
+                Cada pieza existe por una razon: forma, funcion y detalle en equilibrio.
+              {%- else -%}
+                Every piece exists for a reason: form, function, and detail in balance.
+              {%- endif -%}
+            </p>
           </article>
           <article class="why-us__card" role="listitem">
             <span class="why-us__index">02</span>
             <div class="why-us__icon" aria-hidden="true">B</div>
-            <h3 class="why-us__card-title">Envio rapido</h3>
-            <p class="why-us__card-text">Preparacion agil y seguimiento claro para cada pedido.</p>
+            <h3 class="why-us__card-title">
+              {%- if is_spanish -%}Materiales premium{%- else -%}Premium materials{%- endif -%}
+            </h3>
+            <p class="why-us__card-text">
+              {%- if is_spanish -%}
+                Acabados y texturas que se perciben desde el primer contacto.
+              {%- else -%}
+                Finishes and textures you can feel from the first touch.
+              {%- endif -%}
+            </p>
           </article>
           <article class="why-us__card" role="listitem">
             <span class="why-us__index">03</span>
             <div class="why-us__icon" aria-hidden="true">C</div>
-            <h3 class="why-us__card-title">Diseno funcional</h3>
-            <p class="why-us__card-text">Productos pensados para verse bien y usarse todos los dias.</p>
+            <h3 class="why-us__card-title">
+              {%- if is_spanish -%}Detalles precisos{%- else -%}Precise details{%- endif -%}
+            </h3>
+            <p class="why-us__card-text">
+              {%- if is_spanish -%}
+                Nada sobra. Nada distrae. Cada elemento esta cuidado para durar.
+              {%- else -%}
+                Nothing extra. Nothing distracting. Every element is crafted to last.
+              {%- endif -%}
+            </p>
           </article>
         {%- endfor -%}
       </div>
@@ -458,19 +550,19 @@
       "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow",
-      "default": "Por que Kor"
+      "default": "Why Kor"
     },
     {
       "type": "inline_richtext",
       "id": "title",
       "label": "Title",
-      "default": "Menos ruido. Mas criterio."
+      "default": "Less noise. More criteria."
     },
     {
       "type": "textarea",
       "id": "subtitle",
       "label": "Subtitle",
-      "default": "Kor crea productos con una estetica limpia, materiales premium y una experiencia pensada para quienes valoran el detalle."
+      "default": "Kor creates products with clean aesthetics, premium materials, and an experience built for people who value detail."
     },
     {
       "type": "select",
@@ -525,13 +617,13 @@
           "type": "text",
           "id": "title",
           "label": "Title",
-          "default": "Diseno con intencion"
+          "default": "Design with intent"
         },
         {
           "type": "textarea",
           "id": "text",
           "label": "Description",
-          "default": "Cada pieza existe por una razon: forma, funcion y detalle en equilibrio."
+          "default": "Every piece exists for a reason: form, function, and detail in balance."
         }
       ]
     }
@@ -543,34 +635,33 @@
         {
           "type": "item",
           "settings": {
-            "icon_text": "Q",
             "icon_text": "01",
-            "title": "Diseno con intencion",
-            "text": "Cada pieza existe por una razon: forma, funcion y detalle en equilibrio."
+            "title": "Design with intent",
+            "text": "Every piece exists for a reason: form, function, and detail in balance."
           }
         },
         {
           "type": "item",
           "settings": {
             "icon_text": "02",
-            "title": "Materiales premium",
-            "text": "Acabados y texturas que se perciben desde el primer contacto."
+            "title": "Premium materials",
+            "text": "Finishes and textures you can feel from the first touch."
           }
         },
         {
           "type": "item",
           "settings": {
             "icon_text": "03",
-            "title": "Detalles precisos",
-            "text": "Nada sobra. Nada distrae. Cada elemento esta cuidado para durar."
+            "title": "Precise details",
+            "text": "Nothing extra. Nothing distracting. Every element is crafted to last."
           }
         },
         {
           "type": "item",
           "settings": {
             "icon_text": "04",
-            "title": "Experiencia Kor",
-            "text": "Compra, presentacion y uso con una sensacion premium de principio a fin."
+            "title": "Kor experience",
+            "text": "Shopping, presentation, and use with a premium feel from start to finish."
           }
         }
       ]

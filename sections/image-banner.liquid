@@ -136,17 +136,41 @@
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'heading' -%}
+            {%- liquid
+              assign hero_heading = block.settings.heading
+              if is_home_hero
+                assign hero_heading_key = block.settings.heading | strip_html | strip | downcase
+                if hero_heading_key == 'not for everyone.' or hero_heading_key == 'no es para todos.'
+                  assign translated_hero_heading = 'kor.hero.heading' | t
+                  unless translated_hero_heading contains 'translation missing'
+                    assign hero_heading = translated_hero_heading
+                  endunless
+                endif
+              endif
+            -%}
             <h2
               class="banner__heading inline-richtext {{ block.settings.heading_size }}"
               {{ block.shopify_attributes }}
             >
-              {{ block.settings.heading }}
+              {{ hero_heading }}
             </h2>
           {%- when 'text' -%}
             <div class="banner__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
               <p>{{ block.settings.text }}</p>
             </div>
           {%- when 'buttons' -%}
+            {%- liquid
+              assign hero_button_label_1 = block.settings.button_label_1
+              if is_home_hero
+                assign hero_button_label_1_key = block.settings.button_label_1 | strip | downcase
+                if hero_button_label_1_key == 'shop all' or hero_button_label_1_key == 'comprar todo'
+                  assign translated_hero_button_label_1 = 'kor.hero.shop_all' | t
+                  unless translated_hero_button_label_1 contains 'translation missing'
+                    assign hero_button_label_1 = translated_hero_button_label_1
+                  endunless
+                endif
+              endif
+            -%}
             <div
               class="banner__buttons{% if block.settings.button_label_1 != blank and block.settings.button_label_2 != blank %} banner__buttons--multiple{% endif %}"
               {{ block.shopify_attributes }}
@@ -160,7 +184,7 @@
                   {% endif %}
                   class="button{% if block.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %}"
                 >
-                  {{- block.settings.button_label_1 | escape -}}
+                  {{- hero_button_label_1 | escape -}}
                 </a>
               {%- endif -%}
               {%- if block.settings.button_label_2 != blank -%}

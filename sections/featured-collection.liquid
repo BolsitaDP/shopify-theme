@@ -540,6 +540,15 @@
   if featured_showcase_total < 6
     assign featured_showcase_total = 6
   endif
+
+  assign featured_title = section.settings.title
+  assign featured_title_key = section.settings.title | strip | downcase
+  assign featured_title_translated = 'sections.featured_collection.title' | t
+  if section.settings.title == blank or featured_title_key == 'featured products' or featured_title_key == 'productos destacados'
+    unless featured_title_translated contains 'translation missing'
+      assign featured_title = featured_title_translated
+    endunless
+  endif
 -%}
 
 <div
@@ -551,9 +560,9 @@
     data-id="{{ section.id }}"
   >
     <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %}">
-      {%- if section.settings.title != blank -%}
+      {%- if featured_title != blank -%}
         <h2 class="title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-          {{ section.settings.title }}
+          {{ featured_title }}
         </h2>
       {%- endif -%}
       {%- if section.settings.description != blank

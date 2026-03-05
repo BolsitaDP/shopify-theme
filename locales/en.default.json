@@ -331,6 +331,7 @@
       "onboarding_content": "Give your customers a summary of your blog post"
     },
     "featured_collection": {
+      "title": "Featured products",
       "view_all": "View all",
       "view_all_label": "View all products in the {{ collection_name }} collection"
     },
@@ -381,6 +382,29 @@
       "min_error": "This item has a minimum of {{ min }}",
       "max_error": "This item has a maximum of {{ max }}",
       "step_error": "You can only add this item in increments of {{ step }}"
+    },
+    "why_us": {
+      "eyebrow": "Why Kor",
+      "title": "Less noise. More criteria.",
+      "subtitle": "Kor creates products with clean aesthetics, premium materials, and an experience built for people who value detail.",
+      "items": {
+        "item_1": {
+          "title": "Design with intent",
+          "text": "Every piece exists for a reason: form, function, and detail in balance."
+        },
+        "item_2": {
+          "title": "Premium materials",
+          "text": "Finishes and textures you can feel from the first touch."
+        },
+        "item_3": {
+          "title": "Precise details",
+          "text": "Nothing extra. Nothing distracting. Every element is crafted to last."
+        },
+        "item_4": {
+          "title": "Kor experience",
+          "text": "Shopping, presentation, and use with a premium feel from start to finish."
+        }
+      }
     }
   },
   "localization": {
@@ -538,6 +562,10 @@
   "kor": {
     "header": {
       "mobile_quick_navigation": "Mobile quick navigation"
+    },
+    "hero": {
+      "heading": "Not for everyone.",
+      "shop_all": "Shop all"
     },
     "slider": {
       "slide": "Slide"
