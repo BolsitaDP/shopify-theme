@@ -518,10 +518,18 @@
 {%- endstyle -%}
 
 {%- liquid
+  assign products_limit = section.settings.products_to_show
+  if products_limit > 6
+    assign products_limit = 6
+  endif
+  if products_limit < 1
+    assign products_limit = 1
+  endif
+
   assign products_to_display = section.settings.collection.all_products_count
 
-  if section.settings.collection.all_products_count > section.settings.products_to_show
-    assign products_to_display = section.settings.products_to_show
+  if section.settings.collection.all_products_count > products_limit
+    assign products_to_display = products_limit
     assign more_in_collection = true
   endif
 
@@ -537,9 +545,6 @@
   endif
 
   assign featured_showcase_total = products_to_display
-  if featured_showcase_total < 6
-    assign featured_showcase_total = 6
-  endif
 
   assign featured_title = section.settings.title
   assign featured_title_key = section.settings.title | strip | downcase
@@ -587,7 +592,7 @@
       <div class="featured-showcase__shell page-width">
         <div class="featured-showcase__head">
           <div class="featured-showcase__head-count">
-            <span data-featured-current>01</span>/<span>{{ featured_showcase_total | prepend: '0' | slice: -2, 2 }}</span>
+            <span data-featured-current>{% if featured_showcase_total > 0 %}01{% else %}00{% endif %}</span>/<span>{{ featured_showcase_total | prepend: '0' | slice: -2, 2 }}</span>
           </div>
         </div>
         <div class="featured-showcase__rule"></div>
@@ -603,9 +608,7 @@
           </button>
 
           <div class="featured-showcase__track" data-featured-track role="list" aria-label="{{ 'general.slider.name' | t }}">
-            {%- assign actual_featured_count = 0 -%}
-            {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
-              {%- assign actual_featured_count = actual_featured_count | plus: 1 -%}
+            {%- for product in section.settings.collection.products limit: products_limit -%}
               <article class="featured-showcase__slide" role="listitem" data-featured-slide>
                 <a class="featured-showcase__card" href="{{ product.url }}">
                   <div class="featured-showcase__media">
@@ -629,34 +632,6 @@
                 </a>
               </article>
             {%- endfor -%}
-
-            {%- assign placeholder_needed = featured_showcase_total | minus: actual_featured_count -%}
-            {%- if placeholder_needed > 0 -%}
-              {%- for i in (1..placeholder_needed) -%}
-                {%- liquid
-                  assign pidx = forloop.index | modulo: 4
-                  case pidx
-                    when 0
-                      assign placeholder_name = 'vivid'
-                    when 1
-                      assign placeholder_name = 'bloom'
-                    when 2
-                      assign placeholder_name = 'petaled'
-                    else
-                      assign placeholder_name = 'flora'
-                  endcase
-                -%}
-                <article class="featured-showcase__slide" role="listitem" data-featured-slide>
-                  <div class="featured-showcase__card">
-                    <div class="featured-showcase__media">
-                      <div class="featured-showcase__placeholder"></div>
-                    </div>
-                    <div class="featured-showcase__shade"></div>
-                    <p class="featured-showcase__title-text">{{ placeholder_name }}</p>
-                  </div>
-                </article>
-              {%- endfor -%}
-            {%- endif -%}
           </div>
 
           <button
@@ -864,10 +839,10 @@
     {
       "type": "range",
       "id": "products_to_show",
-      "min": 2,
-      "max": 25,
+      "min": 1,
+      "max": 6,
       "step": 1,
-      "default": 4,
+      "default": 6,
       "label": "t:sections.featured-collection.settings.products_to_show.label"
     },
     {

@@ -20,25 +20,49 @@
   assign columns_mobile_int = section.settings.columns_mobile | plus: 0
   assign show_mobile_slider = false
   assign is_kor_universes = false
+  assign max_collection_cards = 4
+  assign collection_cards_to_display = 0
 
   if template.name == 'index' and section.id == 'collections_kor'
     assign is_kor_universes = true
   endif
 
-  if section.settings.swipe_on_mobile and section.blocks.size > columns_mobile_int
+  for block in section.blocks
+    if block.settings.collection != blank
+      assign collection_cards_to_display = collection_cards_to_display | plus: 1
+      if collection_cards_to_display >= max_collection_cards
+        break
+      endif
+    endif
+  endfor
+
+  if section.settings.swipe_on_mobile and collection_cards_to_display > columns_mobile_int
     assign show_mobile_slider = true
+  endif
+
+  assign collection_list_title = section.settings.title
+  assign collection_list_title_key = section.settings.title | strip | downcase
+  assign collection_list_title_translated = 'kor.collections.universes_title' | t
+  if collection_list_title_key == 'universos de kor' or collection_list_title_key == 'kor universes'
+    unless collection_list_title_translated contains 'translation missing'
+      assign collection_list_title = collection_list_title_translated
+    endunless
+  elsif is_kor_universes and section.settings.title == blank
+    unless collection_list_title_translated contains 'translation missing'
+      assign collection_list_title = collection_list_title_translated
+    endunless
   endif
 -%}
 
 <div class="color-{{ section.settings.color_scheme }} gradient{% if is_kor_universes %} section-collection-list--glass{% endif %}">
-  <div class="collection-list-wrapper page-width isolate{% if is_kor_universes %} collection-list-wrapper--glass{% endif %}{% if show_mobile_slider %} page-width-desktop{% endif %}{% if section.settings.title == blank %} no-heading{% endif %}{% if section.settings.show_view_all == false or section.blocks.size > collections.size %} no-mobile-link{% endif %} section-{{ section.id }}-padding">
-    {%- unless section.settings.title == blank -%}
+  <div class="collection-list-wrapper page-width isolate{% if is_kor_universes %} collection-list-wrapper--glass{% endif %}{% if show_mobile_slider %} page-width-desktop{% endif %}{% if collection_list_title == blank %} no-heading{% endif %}{% if section.settings.show_view_all == false or collection_cards_to_display > collections.size %} no-mobile-link{% endif %} section-{{ section.id }}-padding">
+    {%- unless collection_list_title == blank -%}
       <div class="title-wrapper-with-link{% if is_kor_universes %} title-wrapper--glass{% endif %}{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% else %} title-wrapper--self-padded-mobile{% endif %} title-wrapper--no-top-margin">
         <h2
           id="SectionHeading-{{ section.id }}"
           class="collection-list-title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
         >
-          {{ section.settings.title }}
+          {{ collection_list_title }}
         </h2>
 
         {%- if section.settings.show_view_all and show_mobile_slider -%}
@@ -56,27 +80,35 @@
 
     <slider-component class="slider-mobile-gutter{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
       <ul
-        class="collection-list contains-card contains-card--collection{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down{% if section.settings.swipe_on_mobile %} slider slider--tablet grid--peek{% endif %} collection-list--{{ section.blocks.size }}-items"
+        class="collection-list contains-card contains-card--collection{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down{% if section.settings.swipe_on_mobile %} slider slider--tablet grid--peek{% endif %} collection-list--{{ collection_cards_to_display }}-items"
         id="Slider-{{ section.id }}"
         role="list"
       >
         {%- liquid
-          assign columns = section.blocks.size
+          assign columns = collection_cards_to_display
           if columns > 3
             assign columns = 3
           endif
         -%}
+        {%- assign rendered_collection_cards = 0 -%}
         {%- for block in section.blocks -%}
+          {%- if block.settings.collection == blank -%}
+            {%- continue -%}
+          {%- endif -%}
+          {%- if rendered_collection_cards >= max_collection_cards -%}
+            {%- break -%}
+          {%- endif -%}
+          {%- assign rendered_collection_cards = rendered_collection_cards | plus: 1 -%}
           <li
-            id="Slide-{{ section.id }}-{{ forloop.index }}"
+            id="Slide-{{ section.id }}-{{ rendered_collection_cards }}"
             class="collection-list__item grid__item{% if show_mobile_slider %} slider__slide{% endif %}{% if block.settings.collection.featured_image == nil %} collection-list__item--no-media{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             {{ block.shopify_attributes }}
             {% if settings.animations_reveal_on_scroll %}
               data-cascade
-              style="--animation-order: {{ forloop.index }};"
+              style="--animation-order: {{ rendered_collection_cards }};"
             {% endif %}
           >
-            {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
+            {%- assign placeholder_image_index = rendered_collection_cards | minus: 1 | modulo: 4 | plus: 1 -%}
             {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
             {% render 'card-collection',
               card_collection: block.settings.collection,
@@ -103,7 +135,7 @@
             <span class="slider-counter--current">1</span>
             <span aria-hidden="true"> / </span>
             <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
-            <span class="slider-counter--total">{{ section.blocks.size }}</span>
+            <span class="slider-counter--total">{{ collection_cards_to_display }}</span>
           </div>
           <button
             type="button"
@@ -119,7 +151,7 @@
       {%- endif -%}
     </slider-component>
 
-    {%- if section.settings.show_view_all and section.blocks.size < collections.size -%}
+    {%- if section.settings.show_view_all and collection_cards_to_display < collections.size -%}
       <div
         class="center collection-list-view-all{% if show_mobile_slider %} small-hide medium-hide{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
         {% if settings.animations_reveal_on_scroll %}
