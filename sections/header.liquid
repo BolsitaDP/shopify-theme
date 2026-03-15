@@ -936,8 +936,8 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 4.15rem;
-      height: 4.15rem;
+      width: 4.8rem;
+      height: 4.8rem;
       border-radius: 999px;
       border: 0.1rem solid rgba(var(--color-foreground), 0.08);
       background:
@@ -970,22 +970,25 @@
 
     .section-header .mobile-island-nav__cart-fab {
       position: absolute;
-      top: -4.55rem;
+      top: -5.15rem;
       left: 50%;
       transform: translateX(-50%);
-      width: 4.15rem;
-      height: 4.15rem;
+      width: 4.8rem;
+      height: 4.8rem;
       border-radius: 999px;
-      border: 0.1rem solid rgba(255, 255, 255, 0.16);
-      background: #111111;
-      color: #ffffff;
+      border: 0.1rem solid rgba(255, 255, 255, 0.98);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(241, 245, 249, 0.98)),
+        #ffffff;
+      color: #101010;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       text-decoration: none;
       box-shadow:
-        0 1rem 2.2rem rgba(0, 0, 0, 0.22),
-        inset 0 0.1rem 0 rgba(255, 255, 255, 0.12);
+        0 1.2rem 2.6rem rgba(0, 0, 0, 0.26),
+        inset 0 0.14rem 0 rgba(255, 255, 255, 0.95),
+        inset 0 -0.12rem 0 rgba(148, 163, 184, 0.32);
       z-index: 2147483605;
       pointer-events: auto !important;
     }
@@ -1003,6 +1006,17 @@
       width: 2.2rem;
       height: 2.2rem;
       color: inherit;
+    }
+
+    .section-header .mobile-island-nav__cart-glyph {
+      width: 2.2rem;
+      height: 2.2rem;
+      display: block;
+      color: inherit;
+    }
+
+    .section-header .mobile-island-nav__cart-glyph--empty {
+      opacity: 0.92;
     }
 
     .section-header .mobile-island-nav__cart-fab .cart-count-bubble {
@@ -1303,9 +1317,58 @@
     <div class="mobile-island-nav__actions">
       <a href="{{ routes.cart_url }}" class="mobile-island-nav__cart-fab" aria-label="{{ 'templates.cart.cart' | t }}">
         {% if cart == empty %}
-          <span class="svg-wrapper">{{ 'icon-cart-empty.svg' | inline_asset_content }}</span>
+          <span class="svg-wrapper">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="mobile-island-nav__cart-glyph mobile-island-nav__cart-glyph--empty"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path
+                d="M7.5 8.5V7a4.5 4.5 0 0 1 9 0v1.5"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+              />
+              <path
+                d="M5.2 9.6h13.6l-.88 8.84a2.2 2.2 0 0 1-2.19 1.98H8.27a2.2 2.2 0 0 1-2.19-1.98z"
+                stroke="currentColor"
+                stroke-width="2.1"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </span>
         {% else %}
-          <span class="svg-wrapper">{{ 'icon-cart.svg' | inline_asset_content }}</span>
+          <span class="svg-wrapper">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="mobile-island-nav__cart-glyph"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path
+                d="M7.5 8.5V7a4.5 4.5 0 0 1 9 0v1.5"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+              />
+              <path
+                d="M5.2 9.6h13.6l-.86 8.9a2.2 2.2 0 0 1-2.2 1.98H8.26a2.2 2.2 0 0 1-2.2-1.98z"
+                fill="currentColor"
+              />
+              <path
+                d="M9.5 13.1c0 1.26 1.04 2.3 2.5 2.3s2.5-1.04 2.5-2.3"
+                stroke="#ffffff"
+                stroke-opacity="0.82"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+          </span>
         {% endif %}
         {%- if cart != empty -%}
           <div class="cart-count-bubble">
