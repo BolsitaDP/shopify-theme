@@ -3835,3 +3835,91 @@ a,
     opacity: 0.15;
   }
 }
+
+#gsap-scroll-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 200ms ease;
+  background: #000;
+}
+
+#gsap-scroll-bg-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#gsap-scroll-bg::after {
+  content: '';
+  position: absolute;
+  inset: -8%;
+  z-index: 2;
+  background:
+    radial-gradient(48rem 36rem at 14% 22%, rgba(87, 160, 255, 0.24), transparent 72%),
+    radial-gradient(42rem 32rem at 82% 18%, rgba(114, 225, 255, 0.2), transparent 74%),
+    radial-gradient(44rem 34rem at 74% 80%, rgba(255, 145, 108, 0.18), transparent 74%),
+    radial-gradient(36rem 26rem at 26% 76%, rgba(166, 118, 255, 0.16), transparent 74%);
+  mix-blend-mode: screen;
+  filter: blur(7px) saturate(112%);
+  transform: scale(1.02);
+  opacity: 0.72;
+  animation: gsap-bg-glow-drift 22s ease-in-out infinite alternate;
+}
+
+#gsap-scroll-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background:
+    radial-gradient(120% 90% at 50% -20%, rgba(0, 0, 0, 0.26), transparent 55%),
+    radial-gradient(115% 90% at 50% 120%, rgba(0, 0, 0, 0.48), transparent 52%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0.3));
+}
+
+@keyframes gsap-bg-glow-drift {
+  0% {
+    transform: translate3d(-1.5%, -1%, 0) scale(1.02);
+    opacity: 0.64;
+  }
+  50% {
+    transform: translate3d(1.5%, 1%, 0) scale(1.04);
+    opacity: 0.78;
+  }
+  100% {
+    transform: translate3d(-0.5%, 1.5%, 0) scale(1.03);
+    opacity: 0.68;
+  }
+}
+
+body.gsap-scroll-bg-enabled #gsap-scroll-bg {
+  opacity: 0.62;
+}
+
+body.gsap-scroll-bg-enabled::before,
+body.gsap-scroll-bg-enabled::after {
+  opacity: 0 !important;
+}
+
+body.gsap-scroll-bg-enabled > *:not(#gsap-scroll-bg):not(script) {
+  position: relative;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.gsap-scroll-bg-enabled #gsap-scroll-bg {
+    opacity: 0.5;
+  }
+
+  #gsap-scroll-bg::after {
+    animation: none;
+    opacity: 0.36;
+  }
+}

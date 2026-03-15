@@ -34,6 +34,9 @@
     <script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js" defer="defer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js" defer="defer"></script>
+    <script src="{{ 'scroll-timeline.js' | asset_url }}" defer="defer"></script>
 
     {%- if settings.animations_reveal_on_scroll -%}
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
@@ -302,6 +305,16 @@
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
+    <div id="gsap-scroll-bg" aria-hidden="true">
+      <canvas id="gsap-scroll-bg-canvas"></canvas>
+    </div>
+    <script type="application/json" id="gsap-scroll-bg-frames">
+      [
+        {%- for frame in (108000..108146) -%}
+          "{{ 'Timeline 1_' | append: '00' | append: frame | append: '.webp' | asset_url }}"{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ]
+    </script>
 
     {%- if settings.cart_type == 'drawer' -%}
       {%- render 'cart-drawer' -%}
