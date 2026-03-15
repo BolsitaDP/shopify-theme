@@ -43,6 +43,16 @@
   assign collection_list_title = section.settings.title
   assign collection_list_title_key = section.settings.title | strip | downcase
   assign collection_list_title_translated = 'kor.collections.universes_title' | t
+  assign collection_list_title_translated_key = collection_list_title_translated | strip | downcase
+
+  if collection_list_title_key == 'universos de kor' or collection_list_title_key == 'kor universes'
+    assign is_kor_universes = true
+  endif
+
+  if section.settings.title == blank and collection_list_title_translated_key != blank
+    assign is_kor_universes = true
+  endif
+
   if collection_list_title_key == 'universos de kor' or collection_list_title_key == 'kor universes'
     unless collection_list_title_translated contains 'translation missing'
       assign collection_list_title = collection_list_title_translated

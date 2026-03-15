@@ -61,12 +61,12 @@
     border: 0.1rem solid rgba(255, 255, 255, 0.15);
     background:
       linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01)),
-      rgba(var(--color-background), 0.14);
+      rgba(var(--color-background), 0.18);
     box-shadow:
       inset 0 0 0 0.1rem rgba(255, 255, 255, 0.04),
-      0 1.6rem 4rem rgba(var(--color-shadow), 0.08);
-    backdrop-filter: blur(18px) saturate(120%);
-    -webkit-backdrop-filter: blur(18px) saturate(120%);
+      0 1.8rem 4.2rem rgba(var(--color-shadow), 0.08);
+    backdrop-filter: blur(28px) saturate(145%) !important;
+    -webkit-backdrop-filter: blur(28px) saturate(145%) !important;
     overflow: hidden;
     isolation: isolate;
   }
@@ -81,22 +81,22 @@
   }
 
   .featured-showcase-{{ section.id }} .featured-showcase__shell::before {
-    width: 25rem;
-    height: 25rem;
-    top: -7rem;
-    left: -6rem;
-    background: radial-gradient(circle, rgba(var(--fc-accent-soft), 0.12) 0%, rgba(var(--fc-accent-soft), 0.04) 36%, transparent 72%);
-    filter: blur(12px);
+    width: 24rem;
+    height: 24rem;
+    top: -5rem;
+    left: -4rem;
+    background: radial-gradient(circle, rgba(var(--fc-accent-soft), 0.12) 0%, rgba(var(--fc-accent-soft), 0.04) 36%, transparent 70%);
+    filter: blur(10px);
     opacity: 0.7;
   }
 
   .featured-showcase-{{ section.id }} .featured-showcase__shell::after {
-    width: 32rem;
-    height: 32rem;
-    right: -10rem;
-    bottom: -11rem;
-    background: radial-gradient(circle, rgba(var(--fc-accent-cool), 0.07) 0%, rgba(var(--fc-accent-cool), 0.025) 35%, transparent 74%);
-    filter: blur(14px);
+    width: 30rem;
+    height: 30rem;
+    right: -8rem;
+    bottom: -9rem;
+    background: radial-gradient(circle, rgba(var(--fc-accent-cool), 0.07) 0%, rgba(var(--fc-accent-cool), 0.025) 34%, transparent 72%);
+    filter: blur(16px);
     opacity: 0.55;
   }
 
@@ -204,19 +204,18 @@
     text-decoration: none;
     color: #fff;
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.015)),
-      radial-gradient(circle at 14% 12%, rgba(var(--fc-accent-cool), 0.11), transparent 38%),
-      radial-gradient(circle at 88% 84%, rgba(var(--fc-accent-soft), 0.08), transparent 42%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01)),
+      radial-gradient(circle at 14% 12%, rgba(var(--fc-accent-soft), 0.12), transparent 38%),
       rgba(var(--color-background), 0.22);
     border: 0.1rem solid var(--fc-glass-line);
     box-shadow:
-      0 1.4rem 3rem rgba(var(--color-shadow), 0.11),
-      inset 0 0 0 0.1rem rgba(255, 255, 255, 0.02),
+      0 2.4rem 5rem rgba(var(--color-shadow), 0.12),
+      inset 0 0 0 0.1rem rgba(255, 255, 255, 0.025),
       inset 0 1.2rem 2rem rgba(255, 255, 255, 0.01);
     transform-origin: center;
     transition: box-shadow 280ms ease, transform 280ms ease, border-color 280ms ease;
-    backdrop-filter: blur(16px) saturate(125%);
-    -webkit-backdrop-filter: blur(16px) saturate(125%);
+    backdrop-filter: blur(22px) saturate(135%) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(135%) !important;
     isolation: isolate;
   }
 
@@ -224,10 +223,9 @@
     height: var(--fc-main-h);
     border-color: rgba(255, 255, 255, 0.14);
     box-shadow:
-      var(--fc-glass-shadow),
-      0 0.6rem 1.4rem rgba(0, 0, 0, 0.08),
-      inset 0 0 0 0.1rem rgba(255, 255, 255, 0.025),
-      inset 0 1.6rem 2.4rem rgba(255, 255, 255, 0.012);
+      0 2.8rem 5.8rem rgba(var(--color-shadow), 0.16),
+      inset 0 0 0 0.1rem rgba(255, 255, 255, 0.03),
+      inset 0 1.2rem 2rem rgba(255, 255, 255, 0.015);
   }
 
   .featured-showcase-{{ section.id }} .featured-showcase__card::before {
@@ -237,9 +235,9 @@
     z-index: 1;
     pointer-events: none;
     background:
-      radial-gradient(circle at 18% 10%, rgba(var(--fc-accent-soft), 0.09), transparent 42%),
-      radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.04), transparent 48%),
-      linear-gradient(130deg, rgba(255, 255, 255, 0.05), transparent 40%);
+      radial-gradient(circle at 12% 10%, rgba(var(--fc-accent-soft), 0.09), transparent 40%),
+      radial-gradient(circle at 88% 14%, rgba(255, 255, 255, 0.05), transparent 46%),
+      linear-gradient(130deg, rgba(255, 255, 255, 0.05), transparent 42%);
     opacity: 0.65;
   }
 
@@ -250,26 +248,27 @@
     z-index: 1;
     pointer-events: none;
     background:
-      conic-gradient(from 190deg at 50% 50%, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0));
-    filter: blur(22px);
-    opacity: 0.24;
+      conic-gradient(from 180deg at 50% 50%, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0));
+    filter: blur(24px);
+    opacity: 0.28;
     transform: translate3d(0, 0, 0) rotate(0deg);
     transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1), opacity 320ms ease;
   }
 
   .featured-showcase-{{ section.id }} .featured-showcase__slide.is-active .featured-showcase__card:hover,
   .featured-showcase-{{ section.id }} .featured-showcase__slide.is-active .featured-showcase__card:focus-visible {
-    transform: translateY(-0.28rem);
+    transform: translateY(-0.5rem);
+    border-color: rgba(255, 255, 255, 0.14);
     box-shadow:
-      0 3rem 6rem rgba(var(--color-shadow), 0.18),
-      0 0.8rem 1.8rem rgba(0, 0, 0, 0.1),
-      inset 0 0 0 0.1rem rgba(255, 255, 255, 0.035);
+      0 2.8rem 5.8rem rgba(var(--color-shadow), 0.16),
+      inset 0 0 0 0.1rem rgba(255, 255, 255, 0.03),
+      inset 0 1.2rem 2rem rgba(255, 255, 255, 0.015);
   }
 
   .featured-showcase-{{ section.id }} .featured-showcase__slide:not(.is-far) .featured-showcase__card:hover::after,
   .featured-showcase-{{ section.id }} .featured-showcase__slide:not(.is-far) .featured-showcase__card:focus-visible::after {
-    opacity: 0.4;
-    transform: translate3d(1rem, -0.7rem, 0) rotate(7deg);
+    opacity: 0.45;
+    transform: translate3d(1rem, -0.8rem, 0) rotate(8deg);
   }
 
   .featured-showcase-{{ section.id }} .featured-showcase__card:focus-visible {
@@ -309,10 +308,12 @@
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(180deg, rgba(10, 12, 16, 0.03) 0%, rgba(10, 12, 16, 0.14) 44%, rgba(10, 12, 16, 0.32) 100%),
-      linear-gradient(0deg, rgba(0, 0, 0, 0.46) 0%, rgba(0, 0, 0, 0.18) 28%, rgba(0, 0, 0, 0) 62%),
-      radial-gradient(circle at 14% 10%, rgba(var(--fc-accent-cool), 0.06), transparent 40%);
+      linear-gradient(180deg, rgba(10, 12, 16, 0.08) 0%, rgba(10, 12, 16, 0.2) 44%, rgba(10, 12, 16, 0.36) 100%),
+      linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.22) 28%, rgba(0, 0, 0, 0.05) 62%),
+      radial-gradient(circle at 14% 10%, rgba(var(--fc-accent-soft), 0.08), transparent 40%);
     z-index: 1;
+    backdrop-filter: blur(22px) saturate(135%) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(135%) !important;
   }
 
   .featured-showcase-{{ section.id }} .featured-showcase__slide.is-active .featured-showcase__media img {

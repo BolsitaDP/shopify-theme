@@ -4,6 +4,8 @@
   const FRAMES_JSON_ID = 'gsap-scroll-bg-frames';
   const FRAME_STRIDE = 2; // use one frame and skip one
   const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
+  const MOBILE_QUERY = '(max-width: 749px)';
+  const MOBILE_COVER_SCALE = 1.08;
   const MAX_DEVICE_PIXEL_RATIO = 2;
   const PRELOAD_RANGE_BEHIND = 2;
   const PRELOAD_RANGE_AHEAD = 8;
@@ -134,12 +136,16 @@
     return clamp(Math.round(progress * (frameUrls.length - 1)), 0, frameUrls.length - 1);
   }
 
-  function drawContainImage(context, canvas, image) {
+  function drawFrameImage(context, canvas, image) {
     const canvasWidth = canvas.width;
     const canvasHeight = canvas.height;
     const imageWidth = image.naturalWidth || image.width || 1;
     const imageHeight = image.naturalHeight || image.height || 1;
-    const scale = Math.min(canvasWidth / imageWidth, canvasHeight / imageHeight);
+    const isMobile = window.matchMedia(MOBILE_QUERY).matches;
+    const baseScale = isMobile
+      ? Math.max(canvasWidth / imageWidth, canvasHeight / imageHeight)
+      : Math.min(canvasWidth / imageWidth, canvasHeight / imageHeight);
+    const scale = isMobile ? baseScale * MOBILE_COVER_SCALE : baseScale;
     const drawWidth = imageWidth * scale;
     const drawHeight = imageHeight * scale;
     const drawX = (canvasWidth - drawWidth) / 2;
@@ -156,7 +162,7 @@
     const cached = getCache(safeIndex);
 
     if (cached?.loaded) {
-      drawContainImage(context, canvas, cached.image);
+      drawFrameImage(context, canvas, cached.image);
       paintedFrame = safeIndex;
       return Promise.resolve();
     }
@@ -164,7 +170,7 @@
     return loadFrame(safeIndex)
       .then((image) => {
         if (safeIndex !== desiredFrame) return;
-        drawContainImage(context, canvas, image);
+        drawFrameImage(context, canvas, image);
         paintedFrame = safeIndex;
       })
       .catch(() => {});
@@ -198,7 +204,7 @@
 
     if (paintedFrame >= 0) {
       const cached = getCache(paintedFrame);
-      if (cached?.loaded) drawContainImage(context, canvas, cached.image);
+      if (cached?.loaded) drawFrameImage(context, canvas, cached.image);
     }
   }
 
@@ -260,7 +266,7 @@
 
     loadFrame(0)
       .then((image) => {
-        drawContainImage(context, canvas, image);
+        drawFrameImage(context, canvas, image);
         paintedFrame = 0;
         desiredFrame = 0;
         document.body.classList.add('gsap-scroll-bg-enabled');
