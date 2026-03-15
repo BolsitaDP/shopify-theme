@@ -149,6 +149,22 @@
     box-shadow: inset 0 0.1rem 0 rgba(255, 255, 255, 0.08);
   }
 
+  .section-header .header__heading-logo--desktop-brand {
+    display: none;
+  }
+
+  @media screen and (min-width: 990px) {
+    .section-header .header__heading-logo--theme {
+      display: none;
+    }
+
+    .section-header .header__heading-logo--desktop-brand {
+      display: block;
+      width: {{ settings.logo_width }}px;
+      height: auto;
+    }
+  }
+
   .section-header .header__inline-menu .list-menu--inline {
     gap: 0.4rem;
   }
@@ -1144,7 +1160,7 @@
                 {% capture sizes %}(max-width: {{ settings.logo_width | times: 2 }}px) 50vw, {{ settings.logo_width }}px{% endcapture %}
                 {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
                 {{ settings.logo | image_url: width: 600 | image_tag:
-                  class: 'header__heading-logo motion-reduce',
+                  class: 'header__heading-logo header__heading-logo--theme motion-reduce',
                   widths: widths,
                   height: logo_height,
                   width: settings.logo_width,
@@ -1152,6 +1168,13 @@
                   sizes: sizes,
                   preload: true
                 }}
+                <img
+                  src="{{ 'logo_white.svg' | asset_url }}"
+                  alt="{{ shop.name | escape }}"
+                  class="header__heading-logo header__heading-logo--desktop-brand motion-reduce"
+                  width="{{ settings.logo_width }}"
+                  loading="eager"
+                >
               </div>
             {%- else -%}
               <span class="h2">{{ shop.name }}</span>
@@ -1184,7 +1207,7 @@
                 {% capture sizes %}(min-width: 750px) {{ settings.logo_width }}px, 50vw{% endcapture %}
                 {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
                 {{ settings.logo | image_url: width: 600 | image_tag:
-                  class: 'header__heading-logo',
+                  class: 'header__heading-logo header__heading-logo--theme',
                   widths: widths,
                   height: logo_height,
                   width: settings.logo_width,
@@ -1192,6 +1215,13 @@
                   sizes: sizes,
                   preload: true
                 }}
+                <img
+                  src="{{ 'logo_white.svg' | asset_url }}"
+                  alt="{{ shop.name | escape }}"
+                  class="header__heading-logo header__heading-logo--desktop-brand"
+                  width="{{ settings.logo_width }}"
+                  loading="eager"
+                >
               </div>
             {%- else -%}
               <span class="h2">{{ shop.name }}</span>

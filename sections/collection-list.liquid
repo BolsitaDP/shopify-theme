@@ -105,26 +105,36 @@
           {%- if block.settings.collection == blank -%}
             {%- continue -%}
           {%- endif -%}
-          {%- if rendered_collection_cards >= max_collection_cards -%}
-            {%- break -%}
-          {%- endif -%}
-          {%- assign rendered_collection_cards = rendered_collection_cards | plus: 1 -%}
-          <li
-            id="Slide-{{ section.id }}-{{ rendered_collection_cards }}"
-            class="collection-list__item grid__item{% if show_mobile_slider %} slider__slide{% endif %}{% if block.settings.collection.featured_image == nil %} collection-list__item--no-media{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-            {{ block.shopify_attributes }}
-            {% if settings.animations_reveal_on_scroll %}
-              data-cascade
+        {%- if rendered_collection_cards >= max_collection_cards -%}
+          {%- break -%}
+        {%- endif -%}
+        {%- assign rendered_collection_cards = rendered_collection_cards | plus: 1 -%}
+        {%- assign block_collection_image = block.settings.collection.featured_image | default: block.settings.collection.image -%}
+        {%- if block_collection_image == blank and block.settings.collection != blank and block.settings.collection.products_count > 0 and block.settings.collection.products.first.featured_media != blank -%}
+          {%- assign block_collection_image = block.settings.collection.products.first.featured_media.preview_image -%}
+        {%- endif -%}
+        <li
+          id="Slide-{{ section.id }}-{{ rendered_collection_cards }}"
+          class="collection-list__item grid__item{% if show_mobile_slider %} slider__slide{% endif %}{% if block_collection_image == blank %} collection-list__item--no-media{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          {{ block.shopify_attributes }}
+          {% if settings.animations_reveal_on_scroll %}
+            data-cascade
               style="--animation-order: {{ rendered_collection_cards }};"
             {% endif %}
           >
             {%- assign placeholder_image_index = rendered_collection_cards | minus: 1 | modulo: 4 | plus: 1 -%}
             {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
+            {%- assign show_secondary_content = true -%}
+            {%- if is_kor_universes -%}
+              {%- assign show_secondary_content = false -%}
+            {%- endif -%}
             {% render 'card-collection',
               card_collection: block.settings.collection,
               media_aspect_ratio: section.settings.image_ratio,
               columns: columns,
-              placeholder_image: placeholder_image
+              placeholder_image: placeholder_image,
+              show_secondary_content: show_secondary_content,
+              full_card_link: is_kor_universes
             %}
           </li>
         {%- endfor -%}
