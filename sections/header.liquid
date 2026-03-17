@@ -1185,7 +1185,26 @@
                 >
               </div>
             {%- else -%}
-              <span class="h2">{{ shop.name }}</span>
+              {%- assign fallback_logo_width = settings.logo_width | default: 140 -%}
+              {%- assign fallback_logo_height = fallback_logo_width | times: 2 | divided_by: 3 -%}
+              <div class="header__heading-logo-wrapper">
+                <img
+                  src="{{ 'logo_white.svg' | asset_url }}"
+                  alt="{{ shop.name | escape }}"
+                  class="header__heading-logo header__heading-logo--theme motion-reduce"
+                  width="{{ fallback_logo_width }}"
+                  height="{{ fallback_logo_height | round }}"
+                  loading="eager"
+                >
+                <img
+                  src="{{ 'logo_white.svg' | asset_url }}"
+                  alt="{{ shop.name | escape }}"
+                  class="header__heading-logo header__heading-logo--desktop-brand motion-reduce"
+                  width="{{ fallback_logo_width }}"
+                  height="{{ fallback_logo_height | round }}"
+                  loading="eager"
+                >
+              </div>
             {%- endif -%}
           </a>
       {%- if request.page_type == 'index' -%}
@@ -1233,7 +1252,26 @@
                 >
               </div>
             {%- else -%}
-              <span class="h2">{{ shop.name }}</span>
+              {%- assign fallback_logo_width = settings.logo_width | default: 140 -%}
+              {%- assign fallback_logo_height = fallback_logo_width | times: 2 | divided_by: 3 -%}
+              <div class="header__heading-logo-wrapper">
+                <img
+                  src="{{ 'logo_white.svg' | asset_url }}"
+                  alt="{{ shop.name | escape }}"
+                  class="header__heading-logo header__heading-logo--theme motion-reduce"
+                  width="{{ fallback_logo_width }}"
+                  height="{{ fallback_logo_height | round }}"
+                  loading="eager"
+                >
+                <img
+                  src="{{ 'logo_white.svg' | asset_url }}"
+                  alt="{{ shop.name | escape }}"
+                  class="header__heading-logo header__heading-logo--desktop-brand motion-reduce"
+                  width="{{ fallback_logo_width }}"
+                  height="{{ fallback_logo_height | round }}"
+                  loading="eager"
+                >
+              </div>
             {%- endif -%}
           </a>
       {%- if request.page_type == 'index' -%}
