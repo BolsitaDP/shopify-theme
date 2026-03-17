@@ -390,10 +390,10 @@ function normalizeIncomingSettings(payload: unknown) {
 
   return {
     gsap: {
-      enabled: Boolean(gsapSource.enabled ?? true),
+      enabled: parseBooleanInput(gsapSource.enabled, true),
       quality,
-      enableDesktop: Boolean(gsapSource.enableDesktop ?? true),
-      enableMobile: Boolean(gsapSource.enableMobile ?? true),
+      enableDesktop: parseBooleanInput(gsapSource.enableDesktop, true),
+      enableMobile: parseBooleanInput(gsapSource.enableMobile, true),
     },
     homepage: {
       featuredCollectionHandle: String(homepageSource.featuredCollectionHandle ?? ''),
@@ -409,4 +409,18 @@ function normalizeIncomingSettings(payload: unknown) {
       cards,
     },
   };
+}
+
+function parseBooleanInput(value: unknown, fallback: boolean): boolean {
+  if (typeof value === 'boolean') return value;
+  if (typeof value === 'string') {
+    const normalized = value.trim().toLowerCase();
+    if (normalized === 'true' || normalized === '1') return true;
+    if (normalized === 'false' || normalized === '0') return false;
+  }
+  if (typeof value === 'number') {
+    if (value === 1) return true;
+    if (value === 0) return false;
+  }
+  return fallback;
 }

@@ -5,7 +5,6 @@ import {
   Box,
   Button,
   Card,
-  Checkbox,
   Divider,
   InlineStack,
   Page,
@@ -278,66 +277,6 @@ export default function App() {
             <p>Save to apply updates to your storefront theme.</p>
           </Banner>
         ) : null}
-
-        <Card>
-          <BlockStack gap="400">
-            <Text as="h2" variant="headingMd">
-              GSAP Scroll Background
-            </Text>
-
-            <FormSection>
-              <Checkbox
-                label="Enable GSAP timeline background"
-                checked={settings.gsap.enabled}
-                onChange={(checked) =>
-                  setSettings((prev) => ({ ...prev, gsap: { ...prev.gsap, enabled: checked } }))
-                }
-              />
-
-              <Select
-                label="Quality"
-                options={[
-                  { label: 'High (smoothest)', value: 'high' },
-                  { label: 'Balanced', value: 'balanced' },
-                  { label: 'Low (most lightweight)', value: 'low' },
-                ]}
-                value={settings.gsap.quality}
-                onChange={(value) =>
-                  setSettings((prev) => ({
-                    ...prev,
-                    gsap: {
-                      ...prev.gsap,
-                      quality: (value as GsapQuality) || 'balanced',
-                    },
-                  }))
-                }
-              />
-
-              <InlineStack gap="400" wrap>
-                <Checkbox
-                  label="Enable on desktop"
-                  checked={settings.gsap.enableDesktop}
-                  onChange={(checked) =>
-                    setSettings((prev) => ({
-                      ...prev,
-                      gsap: { ...prev.gsap, enableDesktop: checked },
-                    }))
-                  }
-                />
-                <Checkbox
-                  label="Enable on mobile"
-                  checked={settings.gsap.enableMobile}
-                  onChange={(checked) =>
-                    setSettings((prev) => ({
-                      ...prev,
-                      gsap: { ...prev.gsap, enableMobile: checked },
-                    }))
-                  }
-                />
-              </InlineStack>
-            </FormSection>
-          </BlockStack>
-        </Card>
 
         <Card>
           <BlockStack gap="400">

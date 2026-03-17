@@ -30,9 +30,11 @@
 
     {%- liquid
       assign kor_gsap_enabled = true
-      if shop.metafields.kor_theme.gsap_enabled != blank
-        assign kor_gsap_enabled = shop.metafields.kor_theme.gsap_enabled.value
-        if kor_gsap_enabled == 'false'
+      if shop.metafields.kor_theme.gsap_enabled
+        assign kor_gsap_enabled_raw = shop.metafields.kor_theme.gsap_enabled.value | append: '' | downcase | strip
+        if kor_gsap_enabled_raw == 'true' or kor_gsap_enabled_raw == '1'
+          assign kor_gsap_enabled = true
+        else
           assign kor_gsap_enabled = false
         endif
       endif
@@ -46,21 +48,26 @@
       endunless
 
       assign kor_gsap_enable_desktop = true
-      if shop.metafields.kor_theme.gsap_enable_desktop != blank
-        assign kor_gsap_enable_desktop = shop.metafields.kor_theme.gsap_enable_desktop.value
-        if kor_gsap_enable_desktop == 'false'
+      if shop.metafields.kor_theme.gsap_enable_desktop
+        assign kor_gsap_enable_desktop_raw = shop.metafields.kor_theme.gsap_enable_desktop.value | append: '' | downcase | strip
+        if kor_gsap_enable_desktop_raw == 'true' or kor_gsap_enable_desktop_raw == '1'
+          assign kor_gsap_enable_desktop = true
+        else
           assign kor_gsap_enable_desktop = false
         endif
       endif
 
       assign kor_gsap_enable_mobile = true
-      if shop.metafields.kor_theme.gsap_enable_mobile != blank
-        assign kor_gsap_enable_mobile = shop.metafields.kor_theme.gsap_enable_mobile.value
-        if kor_gsap_enable_mobile == 'false'
+      if shop.metafields.kor_theme.gsap_enable_mobile
+        assign kor_gsap_enable_mobile_raw = shop.metafields.kor_theme.gsap_enable_mobile.value | append: '' | downcase | strip
+        if kor_gsap_enable_mobile_raw == 'true' or kor_gsap_enable_mobile_raw == '1'
+          assign kor_gsap_enable_mobile = true
+        else
           assign kor_gsap_enable_mobile = false
         endif
       endif
     -%}
+    <!-- kor_theme_debug: gsap_enabled={{ kor_gsap_enabled }} quality={{ kor_gsap_quality }} desktop={{ kor_gsap_enable_desktop }} mobile={{ kor_gsap_enable_mobile }} -->
 
     <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
@@ -68,7 +75,7 @@
     <script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
-    {%- if kor_gsap_enabled -%}
+    {%- if kor_gsap_enabled == true -%}
       <script>
         window.korTheme = window.korTheme || {};
         window.korTheme.gsapBackground = {
@@ -80,6 +87,14 @@
       <script src="{{ 'gsap.min.js' | asset_url }}" defer="defer"></script>
       <script src="{{ 'ScrollTrigger.min.js' | asset_url }}" defer="defer"></script>
       <script src="{{ 'scroll-timeline.js' | asset_url }}" defer="defer"></script>
+    {%- else -%}
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          document.body.classList.remove('gsap-scroll-bg-enabled');
+          var bg = document.getElementById('gsap-scroll-bg');
+          if (bg) bg.remove();
+        });
+      </script>
     {%- endif -%}
 
     {%- if settings.animations_reveal_on_scroll -%}
@@ -349,7 +364,7 @@
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
-    {%- if kor_gsap_enabled -%}
+    {%- if kor_gsap_enabled == true -%}
       <div id="gsap-scroll-bg" aria-hidden="true">
         <canvas id="gsap-scroll-bg-canvas"></canvas>
       </div>
