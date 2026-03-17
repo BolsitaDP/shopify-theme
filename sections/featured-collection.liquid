@@ -519,7 +519,25 @@
 {%- endstyle -%}
 
 {%- liquid
+  assign featured_collection = section.settings.collection
   assign products_limit = section.settings.products_to_show
+
+  if template.name == 'index'
+    assign homepage_featured_collection_handle = shop.metafields.kor_theme.homepage_featured_collection_handle.value | strip
+    assign homepage_products_limit = shop.metafields.kor_theme.homepage_products_limit.value
+
+    if homepage_featured_collection_handle != blank and collections[homepage_featured_collection_handle] != blank
+      assign featured_collection = collections[homepage_featured_collection_handle]
+    endif
+
+    if homepage_products_limit != blank
+      assign homepage_products_limit_int = homepage_products_limit | plus: 0
+      if homepage_products_limit_int > 0
+        assign products_limit = homepage_products_limit_int
+      endif
+    endif
+  endif
+
   if products_limit > 6
     assign products_limit = 6
   endif
@@ -527,9 +545,9 @@
     assign products_limit = 1
   endif
 
-  assign products_to_display = section.settings.collection.all_products_count
+  assign products_to_display = featured_collection.all_products_count
 
-  if section.settings.collection.all_products_count > products_limit
+  if featured_collection.all_products_count > products_limit
     assign products_to_display = products_limit
     assign more_in_collection = true
   endif
@@ -573,11 +591,11 @@
       {%- endif -%}
       {%- if section.settings.description != blank
         or section.settings.show_description
-        and section.settings.collection.description != empty
+        and featured_collection.description != empty
       -%}
         <div class="collection__description {{ section.settings.description_style }} rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
           {%- if section.settings.show_description -%}
-            {{ section.settings.collection.description }}
+            {{ featured_collection.description }}
           {%- else -%}
             {{ section.settings.description -}}
           {%- endif %}
@@ -609,7 +627,7 @@
           </button>
 
           <div class="featured-showcase__track" data-featured-track role="list" aria-label="{{ 'general.slider.name' | t }}">
-            {%- for product in section.settings.collection.products limit: products_limit -%}
+            {%- for product in featured_collection.products limit: products_limit -%}
               <article class="featured-showcase__slide" role="listitem" data-featured-slide>
                 <a class="featured-showcase__card" href="{{ product.url }}">
                   <div class="featured-showcase__media">
@@ -652,9 +670,9 @@
     {%- if section.settings.show_view_all and more_in_collection -%}
       <div class="center collection__view-all{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
         <a
-          href="{{ section.settings.collection.url }}"
+          href="{{ featured_collection.url }}"
           class="{% if section.settings.view_all_style == 'link' %}link underlined-link{% elsif section.settings.view_all_style == 'solid' %}button{% else %}button button--secondary{% endif %}"
-          aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: section.settings.collection.title | escape }}"
+          aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: featured_collection.title | escape }}"
         >
           {{ 'sections.featured_collection.view_all' | t }}
         </a>

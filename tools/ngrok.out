@@ -1,0 +1,38 @@
+t=2026-03-16T22:59:22-0500 lvl=info msg="no configuration paths supplied"
+t=2026-03-16T22:59:22-0500 lvl=info msg="using configuration at default config path" path=C:\\Users\\sgira\\AppData\\Local\\ngrok\\ngrok.yml
+t=2026-03-16T22:59:22-0500 lvl=info msg="open config file" path=C:\\Users\\sgira\\AppData\\Local\\ngrok\\ngrok.yml err=nil
+t=2026-03-16T22:59:22-0500 lvl=info msg="FIPS 140 mode" enabled=false
+t=2026-03-16T22:59:22-0500 lvl=info msg="starting web service" obj=web addr=127.0.0.1:4040 allow_hosts=[]
+t=2026-03-16T22:59:23-0500 lvl=info msg="client session established" obj=tunnels.session
+t=2026-03-16T22:59:23-0500 lvl=info msg="tunnel session started" obj=tunnels.session
+t=2026-03-16T22:59:23-0500 lvl=info msg="started tunnel" obj=tunnels name=command_line addr=http://localhost:5173 url=https://decomposable-undesirously-in.ngrok-free.dev
+t=2026-03-16T23:00:29-0500 lvl=info msg="join connections" obj=join id=2bae744ceb60 l=[::1]:5173 r=[2800:484:9078:d700:41f2:8456:12a2:9057]:59872
+t=2026-03-16T23:03:04-0500 lvl=info msg="join connections" obj=join id=b57fed09c137 l=[::1]:5173 r=[2800:484:9078:d700:41f2:8456:12a2:9057]:61206
+t=2026-03-16T23:03:58-0500 lvl=info msg="join connections" obj=join id=70d96d6b9568 l=[::1]:5173 r=[2800:484:9078:d700:41f2:8456:12a2:9057]:61206
+t=2026-03-16T23:03:58-0500 lvl=info msg="join connections" obj=join id=3b2e8fd3c816 l=[::1]:5173 r=[2800:484:9078:d700:41f2:8456:12a2:9057]:61206
+t=2026-03-16T23:03:59-0500 lvl=info msg="join connections" obj=join id=e546ebbf542e l=[::1]:5173 r=[2800:484:9078:d700:41f2:8456:12a2:9057]:61206
+t=2026-03-16T23:03:59-0500 lvl=info msg="join connections" obj=join id=633563b996bc l=[::1]:5173 r=[2800:484:9078:d700:41f2:8456:12a2:9057]:61206
+t=2026-03-16T23:03:59-0500 lvl=info msg="join connections" obj=join id=1c8ddef9225b l=[::1]:5173 r=[2800:484:9078:d700:41f2:8456:12a2:9057]:61206
+t=2026-03-16T23:03:59-0500 lvl=info msg="join connections" obj=join id=202bb0edcec5 l=[::1]:5173 r=[2800:484:9078:d700:41f2:8456:12a2:9057]:61206
+t=2026-03-16T23:03:59-0500 lvl=info msg="join connections" obj=join id=af500c292381 l=[::1]:5173 r=[2800:484:9078:d700:41f2:8456:12a2:9057]:61206
+t=2026-03-16T23:03:59-0500 lvl=info msg="join connections" obj=join id=860452404616 l=[::1]:5173 r=[2800:484:9078:d700:41f2:8456:12a2:9057]:61206
+t=2026-03-16T23:03:59-0500 lvl=info msg="join connections" obj=join id=761054c5e87f l=[::1]:5173 r=[2800:484:9078:d700:41f2:8456:12a2:9057]:61206
+t=2026-03-16T23:03:59-0500 lvl=info msg="join connections" obj=join id=7c0f4747842c l=[::1]:5173 r=[2800:484:9078:d700:41f2:8456:12a2:9057]:61206
+t=2026-03-16T23:04:00-0500 lvl=info msg="join connections" obj=join id=c980bb2b37a5 l=[::1]:5173 r=[2800:484:9078:d700:41f2:8456:12a2:9057]:50532
+t=2026-03-16T23:04:07-0500 lvl=info msg="join connections" obj=join id=34e0096a464b l=[::1]:5173 r=[2800:484:9078:d700:41f2:8456:12a2:9057]:61206
+t=2026-03-16T23:04:07-0500 lvl=info msg="join connections" obj=join id=12871e96e715 l=[::1]:5173 r=[2800:484:9078:d700:41f2:8456:12a2:9057]:61206
+t=2026-03-16T23:04:08-0500 lvl=info msg="join connections" obj=join id=e190addbc43f l=[::1]:5173 r=[2800:484:9078:d700:41f2:8456:12a2:9057]:61206
+t=2026-03-16T23:04:08-0500 lvl=info msg="join connections" obj=join id=97cbbd5c4371 l=[::1]:5173 r=[2800:484:9078:d700:41f2:8456:12a2:9057]:61206
+t=2026-03-16T23:04:08-0500 lvl=info msg="join connections" obj=join id=5b8be3c0c13b l=[::1]:5173 r=[2800:484:9078:d700:41f2:8456:12a2:9057]:65500
+t=2026-03-16T23:21:35-0500 lvl=info msg="join connections" obj=join id=d6f72fb02fd5 l=[::1]:5173 r=[2800:484:9078:d700:41f2:8456:12a2:9057]:61206
+t=2026-03-16T23:21:48-0500 lvl=info msg="join connections" obj=join id=f771084130e1 l=[::1]:5173 r=[2800:484:9078:d700:41f2:8456:12a2:9057]:61206
+t=2026-03-16T23:21:55-0500 lvl=info msg="join connections" obj=join id=6fb142cc4eb8 l=[::1]:5173 r=[2800:484:9078:d700:41f2:8456:12a2:9057]:61206
+t=2026-03-16T23:27:37-0500 lvl=warn msg="failed to open private leg" id=f1f2f1d16275 privaddr=localhost:5173 err="dial tcp [::1]:5173: connectex: No connection could be made because the target machine actively refused it."
+t=2026-03-16T23:27:37-0500 lvl=warn msg="failed to open private leg" id=8dbe5cce4358 privaddr=localhost:5173 err="dial tcp [::1]:5173: connectex: No connection could be made because the target machine actively refused it."
+t=2026-03-16T23:27:52-0500 lvl=info msg="join connections" obj=join id=1158a82de317 l=[::1]:5173 r=[2800:484:9078:d700:41f2:8456:12a2:9057]:61581
+t=2026-03-16T23:27:53-0500 lvl=info msg="join connections" obj=join id=40ff09209368 l=[::1]:5173 r=[2800:484:9078:d700:41f2:8456:12a2:9057]:61581
+t=2026-03-16T23:27:53-0500 lvl=info msg="join connections" obj=join id=b8d21d108df7 l=[::1]:5173 r=[2800:484:9078:d700:41f2:8456:12a2:9057]:61581
+t=2026-03-16T23:27:53-0500 lvl=info msg="join connections" obj=join id=b3195d5a1e73 l=[::1]:5173 r=[2800:484:9078:d700:41f2:8456:12a2:9057]:61581
+t=2026-03-16T23:27:53-0500 lvl=info msg="join connections" obj=join id=bbc0665a0d9d l=[::1]:5173 r=[2800:484:9078:d700:41f2:8456:12a2:9057]:61581
+t=2026-03-16T23:27:54-0500 lvl=info msg="join connections" obj=join id=c5a3b749a7de l=[::1]:5173 r=[2800:484:9078:d700:41f2:8456:12a2:9057]:57419
+t=2026-03-16T23:27:58-0500 lvl=info msg="join connections" obj=join id=0cb9cff20428 l=[::1]:5173 r=[2800:484:9078:d700:41f2:8456:12a2:9057]:61581

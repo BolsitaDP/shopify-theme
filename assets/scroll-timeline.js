@@ -2,9 +2,19 @@
   const BACKGROUND_ID = 'gsap-scroll-bg';
   const CANVAS_ID = 'gsap-scroll-bg-canvas';
   const FRAMES_JSON_ID = 'gsap-scroll-bg-frames';
-  const FRAME_STRIDE = 2; // use one frame and skip one
+  const config = window.korTheme?.gsapBackground || {};
+  const QUALITY_TO_STRIDE = {
+    high: 1,
+    balanced: 2,
+    low: 4,
+  };
+  const requestedQuality =
+    typeof config.quality === 'string' ? config.quality.toLowerCase() : 'balanced';
+  const FRAME_STRIDE = QUALITY_TO_STRIDE[requestedQuality] || QUALITY_TO_STRIDE.balanced;
   const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
   const MOBILE_QUERY = '(max-width: 749px)';
+  const ENABLE_DESKTOP = config.enableDesktop !== false;
+  const ENABLE_MOBILE = config.enableMobile !== false;
   const MOBILE_COVER_SCALE = 1.08;
   const MAX_DEVICE_PIXEL_RATIO = 2;
   const PRELOAD_RANGE_BEHIND = 2;
@@ -17,9 +27,13 @@
   let warmupOrder = [];
   let warmupIndex = 0;
   let warmupTimer = null;
+  let initialized = false;
+  let waitingForViewport = false;
 
   const frameCache = new Map();
   const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+  const isViewportEnabled = () =>
+    window.matchMedia(MOBILE_QUERY).matches ? ENABLE_MOBILE : ENABLE_DESKTOP;
 
   function parseFrames() {
     const framesNode = document.getElementById(FRAMES_JSON_ID);
@@ -247,9 +261,27 @@
   }
 
   function initTimelineBackground() {
+    if (initialized) return;
     const background = document.getElementById(BACKGROUND_ID);
     const canvas = document.getElementById(CANVAS_ID);
     if (!background || !canvas) return;
+
+    if (!isViewportEnabled()) {
+      if (!waitingForViewport) {
+        waitingForViewport = true;
+        window.addEventListener(
+          'resize',
+          () => {
+            if (isViewportEnabled()) initTimelineBackground();
+          },
+          { passive: true }
+        );
+      }
+      return;
+    }
+
+    initialized = true;
+    waitingForViewport = false;
 
     const context = canvas.getContext('2d', { alpha: false });
     if (!context) return;

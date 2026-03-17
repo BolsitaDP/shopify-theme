@@ -28,15 +28,59 @@
 
     {% render 'meta-tags' %}
 
+    {%- liquid
+      assign kor_gsap_enabled = true
+      if shop.metafields.kor_theme.gsap_enabled != blank
+        assign kor_gsap_enabled = shop.metafields.kor_theme.gsap_enabled.value
+        if kor_gsap_enabled == 'false'
+          assign kor_gsap_enabled = false
+        endif
+      endif
+
+      assign kor_gsap_quality = 'balanced'
+      if shop.metafields.kor_theme.gsap_quality != blank
+        assign kor_gsap_quality = shop.metafields.kor_theme.gsap_quality.value | downcase
+      endif
+      unless kor_gsap_quality == 'high' or kor_gsap_quality == 'low' or kor_gsap_quality == 'balanced'
+        assign kor_gsap_quality = 'balanced'
+      endunless
+
+      assign kor_gsap_enable_desktop = true
+      if shop.metafields.kor_theme.gsap_enable_desktop != blank
+        assign kor_gsap_enable_desktop = shop.metafields.kor_theme.gsap_enable_desktop.value
+        if kor_gsap_enable_desktop == 'false'
+          assign kor_gsap_enable_desktop = false
+        endif
+      endif
+
+      assign kor_gsap_enable_mobile = true
+      if shop.metafields.kor_theme.gsap_enable_mobile != blank
+        assign kor_gsap_enable_mobile = shop.metafields.kor_theme.gsap_enable_mobile.value
+        if kor_gsap_enable_mobile == 'false'
+          assign kor_gsap_enable_mobile = false
+        endif
+      endif
+    -%}
+
     <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'gsap.min.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'ScrollTrigger.min.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'scroll-timeline.js' | asset_url }}" defer="defer"></script>
+    {%- if kor_gsap_enabled -%}
+      <script>
+        window.korTheme = window.korTheme || {};
+        window.korTheme.gsapBackground = {
+          quality: {{ kor_gsap_quality | json }},
+          enableDesktop: {{ kor_gsap_enable_desktop | json }},
+          enableMobile: {{ kor_gsap_enable_mobile | json }}
+        };
+      </script>
+      <script src="{{ 'gsap.min.js' | asset_url }}" defer="defer"></script>
+      <script src="{{ 'ScrollTrigger.min.js' | asset_url }}" defer="defer"></script>
+      <script src="{{ 'scroll-timeline.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%}
 
     {%- if settings.animations_reveal_on_scroll -%}
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
@@ -305,16 +349,18 @@
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
-    <div id="gsap-scroll-bg" aria-hidden="true">
-      <canvas id="gsap-scroll-bg-canvas"></canvas>
-    </div>
-    <script type="application/json" id="gsap-scroll-bg-frames">
-      [
-        {%- for frame in (108000..108146) -%}
-          "{{ 'Timeline 1_' | append: '00' | append: frame | append: '.webp' | asset_url }}"{% unless forloop.last %},{% endunless %}
-        {%- endfor -%}
-      ]
-    </script>
+    {%- if kor_gsap_enabled -%}
+      <div id="gsap-scroll-bg" aria-hidden="true">
+        <canvas id="gsap-scroll-bg-canvas"></canvas>
+      </div>
+      <script type="application/json" id="gsap-scroll-bg-frames">
+        [
+          {%- for frame in (108000..108146) -%}
+            "{{ 'Timeline 1_' | append: '00' | append: frame | append: '.webp' | asset_url }}"{% unless forloop.last %},{% endunless %}
+          {%- endfor -%}
+        ]
+      </script>
+    {%- endif -%}
 
     {%- if settings.cart_type == 'drawer' -%}
       {%- render 'cart-drawer' -%}

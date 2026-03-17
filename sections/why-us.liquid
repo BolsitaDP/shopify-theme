@@ -425,6 +425,22 @@
   unless translated_subtitle contains 'translation missing'
     assign subtitle_text = translated_subtitle
   endunless
+
+  if template.name == 'index'
+    assign why_us_eyebrow_override = shop.metafields.kor_theme.why_us_eyebrow.value | strip
+    assign why_us_title_override = shop.metafields.kor_theme.why_us_title.value | strip
+    assign why_us_subtitle_override = shop.metafields.kor_theme.why_us_subtitle.value | strip
+
+    if why_us_eyebrow_override != blank
+      assign eyebrow_text = why_us_eyebrow_override
+    endif
+    if why_us_title_override != blank
+      assign title_text = why_us_title_override
+    endif
+    if why_us_subtitle_override != blank
+      assign subtitle_text = why_us_subtitle_override
+    endif
+  endif
 -%}
 
 <section class="why-us why-us-{{ section.id }} color-{{ section.settings.color_scheme }} gradient">
@@ -477,6 +493,33 @@
             unless translated_card_text contains 'translation missing'
               assign card_text = translated_card_text
             endunless
+
+            if template.name == 'index'
+              assign card_title_override = ''
+              assign card_text_override = ''
+
+              case forloop.index
+                when 1
+                  assign card_title_override = shop.metafields.kor_theme.why_us_item_1_title.value | strip
+                  assign card_text_override = shop.metafields.kor_theme.why_us_item_1_text.value | strip
+                when 2
+                  assign card_title_override = shop.metafields.kor_theme.why_us_item_2_title.value | strip
+                  assign card_text_override = shop.metafields.kor_theme.why_us_item_2_text.value | strip
+                when 3
+                  assign card_title_override = shop.metafields.kor_theme.why_us_item_3_title.value | strip
+                  assign card_text_override = shop.metafields.kor_theme.why_us_item_3_text.value | strip
+                when 4
+                  assign card_title_override = shop.metafields.kor_theme.why_us_item_4_title.value | strip
+                  assign card_text_override = shop.metafields.kor_theme.why_us_item_4_text.value | strip
+              endcase
+
+              if card_title_override != blank
+                assign card_title = card_title_override
+              endif
+              if card_text_override != blank
+                assign card_text = card_text_override
+              endif
+            endif
           -%}
           <article class="why-us__card" role="listitem" {{ block.shopify_attributes }}>
             <span class="why-us__index">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>

@@ -126,3 +126,11 @@ git commit -m "Describe tu cambio"
 - Evita editar directamente el tema publicado en produccion.
 - Ten cuidado con `config/settings_data.json` porque contiene configuracion del tema.
 - Si trabajas en equipo, acuerden si haran `pull` antes de cada `push`.
+
+## Embedded app (React + Polaris + App Bridge)
+
+Este repositorio ahora incluye una mini app embebida para controlar partes del theme via metafields:
+
+- Ruta: `apps/kor-theme-control-center`
+- Documentacion: `apps/kor-theme-control-center/README.md`
+- Namespace de metafields usado: `kor_theme`
